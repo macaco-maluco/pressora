@@ -30,6 +30,16 @@ class Match {
     this.players.forEach(player => this.turn_command_buffer[player.id] = new Array(5))
   }
 
+  positionPlayers () {
+    var horizontalLength = this.map.coords[0].length - 1
+    var verticalLength = this.map.coords.length - 1
+    var playerPositions = [{x: 0, y: 0, facing: 'S'},
+                           {x: horizontalLength, y: 0, facing: 'S'},
+                           {x: horizontalLength, y: verticalLength, facing: 'N'},
+                           {x: 0, y: verticalLength, facing: 'N'}]
+    this.players.forEach(player => player.pos = playerPositions.shift())
+  }
+
   inputCommand (playerId, slot, command) {
     this.turn_command_buffer[playerId][slot] = new Command(slot, command)
   }

@@ -3,6 +3,7 @@ module.exports = function (context, socket) {
   console.log(`player ${context.session.playerId} connected to match ${context.session.matchId}`)
 
   if (context.match.isReadyToLoad()) {
+    context.match.positionPlayers()
     var event = {players: context.match.players}
     console.log(`preparing match ${context.session.matchId}`)
     socket.to(context.match.id).emit('prepare-match', event)
