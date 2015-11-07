@@ -1,6 +1,15 @@
-export function editActionSlot (index) {
+export function editActionSlot (slot) {
   return {
     type: 'EDIT_ACTION_SLOT',
-    slot: index
+    slot
+  }
+}
+
+
+export function selectAction (slot, action) {
+  return {
+    type: 'SELECT_ACTION_SLOT',
+    slot,
+    action
   }
 }

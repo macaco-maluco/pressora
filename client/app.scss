@@ -9,16 +9,28 @@ body {
   background: #333333;
 }
 
+
 .app {
   margin: 0 auto;
   position: relative;
 
+  .available-actions {
+    background: #EA7373;
+  }
+
   @media screen and (orientation:portrait) {
-    .action-slots {
+    .selected-actions {
       position: absolute;
       width: 100vw;
       text-align: center;
       bottom: -64px;
+    }
+
+    .available-actions {
+      position: absolute;
+      width: 100vw;
+      text-align: center;
+      bottom: 0px;
     }
 
     &, .game-map {
@@ -28,10 +40,17 @@ body {
   }
 
   @media screen and (orientation:landscape) {
-    .action-slots {
+    .selected-actions {
       position: absolute;
       width: 64px;
       left: -64px;
+      top: 0;
+    }
+
+    .available-actions {
+      position: absolute;
+      width: 64px;
+      left: 0px;
       top: 0;
     }
 
