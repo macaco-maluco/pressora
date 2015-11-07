@@ -13,7 +13,8 @@ module.exports = function gameAction (req, res) {
     req.session.matchId = match.id
   }
   res.json({
-    map: match.map
+    map: match.map,
+    socket_url: process.env.NODE_ENV === 'production' ? '/' : ':3000/'
   })
 }
 
