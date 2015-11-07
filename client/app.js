@@ -26,15 +26,17 @@ export default React.createClass({
 
   render: function () {
     return <div className='app' onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
-      <GameMap map={this.props.map}>
-        {
-          this.props.players.map((player, index) => {
-            return <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
-              <Player player={player}/>
-            </GameMapNode>
-          })
-        }
-      </GameMap>
+      {
+        this.props.map && <GameMap map={this.props.map}>
+          {
+            this.props.players.map((player, index) => {
+              return <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
+                <Player player={player}/>
+              </GameMapNode>
+            })
+          }
+        </GameMap>
+      }
 
       <ActionSlots className='selected-actions' onClick={this.props.editActionSlot} actions={this.props.actions}/>
 

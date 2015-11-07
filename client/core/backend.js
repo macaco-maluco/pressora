@@ -1,14 +1,18 @@
 import axios from 'axios'
+import store from './store'
 
 axios.get('/game')
-  .then(function () {
+  .then(function ({ data }) {
+    store.dispatch({ type: 'LOAD_MAP', map: data.map })
+
     var socket = window.io.connect(':3000/', { path: '/game-socket' })
     socket.on('wait-for-players', function (data) {
       console.log('wait-for-players', data)
-      socket.emit('client-ready')
     })
     socket.on('prepare-match', function (data) {
       console.log('prepare-match', data)
+      store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
+      socket.emit('client-ready')
     })
     socket.on('start-turn', function (data) {
       console.log('start-turn', data)

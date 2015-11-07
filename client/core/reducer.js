@@ -1,7 +1,7 @@
 import initialState from './initial-state'
 
 export default function (state = initialState, action) {
-  let actions
+  let actions, players
 
   switch (action.type) {
     case 'EDIT_ACTION_SLOT':
@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
       return Object.assign({}, state, { actions })
 
     case 'MOVE_PLAYER':
-      const players = state.players.map((player, index) => {
+      players = state.players.map((player, index) => {
         if (index !== action.playerId) { return player }
         return Object.assign({}, player, { pos: action.newPosition })
       })
@@ -28,6 +28,14 @@ export default function (state = initialState, action) {
       })
 
       return Object.assign({}, state, { actions })
+
+    case 'LOAD_MAP':
+      const map = action.map
+      return Object.assign({}, state, { map })
+
+    case 'LOAD_PLAYERS':
+      players = action.players
+      return Object.assign({}, state, { players })
   }
 
   return state
