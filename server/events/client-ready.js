@@ -19,6 +19,7 @@ function startGame (context, socket) {
 
   startTick(socket, matchId)
     .then(function () {
+      context.match.executeCommands()
       socket.to(matchId).emit('render', {})
       socket.emit('render', {})
     })
@@ -26,7 +27,7 @@ function startGame (context, socket) {
 
 function startTick (socket, matchId) {
   return new Promise(function (resolve, reject) {
-    scheduleTick(socket, matchId, 30, resolve)
+    scheduleTick(socket, matchId, 5, resolve)
   })
 }
 
