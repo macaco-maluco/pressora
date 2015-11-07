@@ -4,22 +4,57 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
+  transition: all 0.5s ease-in-out;
 
-  .flames {
+  .flames, .beam, .particle {
     opacity: 0;
   }
 
-  &.player-facing-N {}
-  &.player-facing-S {}
-  &.player-facing-W {}
-  &.player-facing-E {}
+  &.player-facing-N {
+    transform: rotate(0deg);
+  }
+
+  &.player-facing-S {
+    transform: rotate(180deg);
+  }
+
+  &.player-facing-W {
+    transform: rotate(90deg);
+  }
+
+  &.player-facing-E {
+    transform: rotate(90deg);
+  }
 
   &.player-moving {
     .flames {
-      animation: engine-on normal 0.5s infinite ease-in-out;
+      animation: engine-on ease-in-out 0.5s infinite;
     }
   }
 
+  &.player-shooting {
+    .beam {
+      animation: beam-on ease-in-out 0.3s infinite;
+    }
+  }
+  
+  &.player-blasting {
+    .blast {
+      .particle {
+        animation: blast-on ease-in-out 0.8s alternate;
+        
+        &:nth-child(2) {
+          -webkit-animation-delay: 0.2s;
+        }
+        
+        &:nth-child(3) {
+          -webkit-animation-delay: 0.4s;
+        }
+      }
+    }
+    
+  }
+  
   &.player-1 {
     background-image: url('./player/player-1.png');
 
@@ -32,6 +67,28 @@
       left: 50%;
       margin: -16px -23px;
     }
+    
+    .beam {
+      position: absolute;
+      width: 1px;
+      height: 100px;
+      bottom: 100%;
+      left: 50%;
+      background-color: #0dd;
+      box-shadow: 0px 0px 10px 5px #0ff;
+    }
+
+    .blast {
+      .particle {
+        top: 0%;
+        left: 0%;
+        position: absolute;
+        border:1px solid #0dd;
+        background-color: #0dd;
+        border-radius: 50%;
+        box-shadow: 0px 0px 10px 5px #0ff;
+      }
+    }
   }
 
   &.player-2 {
@@ -41,3 +98,39 @@
 
 
 @keyframes engine-on {0%{opacity:1;} 50%{opacity:0.5;} 100%{opacity:1;}}
+@keyframes beam-on {0%{opacity:1;} 50%{opacity:0.5;} 100%{opacity:1;}}
+@keyframes blast-on {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    opacity:1;
+  }
+
+  20% {
+    opacity:0.6;
+  }
+  
+  40% {
+    opacity:0.2;
+  }
+  
+  60% {
+    opacity:0.6;
+  }
+  
+  80% {
+    opacity:0.2;
+  }
+
+  100% {
+    top: -50%;
+    left: -60%;
+    width: 300%;
+    height: 300%;
+    opacity: 0;
+    margin-left: -40%;
+    margin-top: -50%;
+  }
+}

@@ -70,7 +70,7 @@ export default {
 
     loaders: [
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|mp3)$/,
         loader: 'url-loader?limit=8192&name=[name]-[hash].[ext]'
       },
       {
