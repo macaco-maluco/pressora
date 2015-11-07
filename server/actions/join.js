@@ -20,32 +20,11 @@ module.exports = function (io) {
   io.on('connection', function (socket) {
     var session = socket.handshake.session
     var match = findMatch(session.matchId)
-
-    socket.join(match.id)
-    console.log(`player ${session.playerId} connected to match ${session.matchId}`)
-
-    if (match.isReadyToLoad()) {
-      var event = {players: match.players}
-      console.log(`preparing match ${session.matchId}`)
-      socket.to(match.id).emit('prepare-match', event)
-      socket.emit('prepare-match', event)
-    } else {
-      socket.emit('wait-for-players')
+    var context = {
+      session: session,
+      match: match
     }
-
-    socket.on('client-ready', function () {
-      var session = socket.handshake.session
-      var match = findMatch(session.matchId)
-
-      match.players_ready[session.playerId] = true
-      console.log(`player ${session.playerId} ready`)
-
-      if (match.isReadyToStart()) {
-        var event = {}
-        console.log(`starting match ${match.id}`)
-        socket.to(match.id).emit('start-match', event)
-        socket.emit('start-match', event)
-      }
-    })
+    require('../events/connection')(context, socket)
+    socket.on('client-ready', require('../events/client-ready')(context, socket))
   })
 }

@@ -9,6 +9,7 @@ class Match {
     this.players_ready = {}
     this.created_at = Date.now()
     this.latest_interaction = Date.now()
+    this.status = 'waiting'
   }
 
   isReadyToLoad () {
@@ -16,7 +17,7 @@ class Match {
   }
 
   isReadyToStart () {
-    return Object.keys(this.players_ready).length === this.players.length
+    return Object.keys(this.players_ready).length === this.players.length && this.status === 'waiting'
   }
 
   addPlayer (player) {
