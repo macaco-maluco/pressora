@@ -1,0 +1,19 @@
+.app {
+  .game-map {
+    margin: 0 auto;
+  }
+
+  @media screen and (orientation:portrait) {
+    .game-map {
+      width: 100vw;
+      height: 100vw;
+    }
+  }
+
+  @media screen and (orientation:landscape) {
+    .game-map {
+      width: 100vh;
+      height: 100vh;
+    }
+  }
+}
