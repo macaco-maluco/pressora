@@ -6,6 +6,7 @@ import { connect, Provider } from 'react-redux'
 import App from './app'
 import store from './core/store'
 import * as Actions from './core/actions'
+import './core/backend'
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 
