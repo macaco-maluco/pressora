@@ -30,6 +30,7 @@ module.exports = function gameAction (req, res) {
   req.session.playerId = player.id
 
   res.json({
-    match_id: matchToJoin.id
+    match_id: matchToJoin.id,
+    map: matchToJoin.map
   })
 }
