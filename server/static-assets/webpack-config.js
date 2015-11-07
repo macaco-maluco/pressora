@@ -21,6 +21,12 @@ export default {
     './index'
   ],
 
+  resolve: {
+    root: [
+      path.join(projectPath, '/node_modules')
+    ]
+  },
+
   output: {
     path: path.join(projectPath, 'dist'),
     filename: 'index.js'
