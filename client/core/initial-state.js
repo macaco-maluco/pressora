@@ -21,8 +21,9 @@ export default {
   },
 
   players: [
-    { pos: { x: 1, y: 1 }, facing: 'S', status: 'moving' },
-    { pos: { x: 2, y: 6 }, facing: 'E', status: 'stopped' }
+    { pos: { x: 1, y: 1, facing: 'N' }, status: 'blasting' },
+    { pos: { x: 2, y: 6, facing: 'N' }, status: 'stopped' },
+    { pos: { x: 4, y: 3, facing: 'S' }, status: 'stopped' }
   ],
 
   actions: [
