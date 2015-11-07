@@ -16,6 +16,12 @@
   socket.on('render', function (data) {
     console.log('render', data);
   });
+  socket.on('end-turn', function (data) {
+    console.log('end-turn', data);
+  });
+  socket.on('end-match', function (data) {
+    console.log('end-match', data);
+  });
 </script>
 
 <button onclick="javascript:socket.emit('client-ready'); console.log('btn: client ready')">client ready</button>

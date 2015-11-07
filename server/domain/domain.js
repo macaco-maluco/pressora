@@ -6,6 +6,7 @@ export class Match {
   constructor () {
     this.id = Uuid.v4()
     this.map = Maps[Math.floor(Math.random()) % Maps.length]
+    this.turn = 0
     this.players = []
     this.players_ready = {}
     this.created_at = Date.now()
@@ -22,12 +23,23 @@ export class Match {
     return Object.keys(this.players_ready).length === this.map.max_players && this.status === 'waiting'
   }
 
+  isFinished () {
+    return false
+  }
+
   addPlayer (player) {
     this.players.push(player)
   }
 
-  start () {
+  acceptCommands () {
     this.status = 'accepting-commands'
+  }
+
+  blockCommands () {
+    this.status = 'blocking-commands'
+  }
+
+  clearCommands () {
     this.players.forEach(player => this.turn_command_buffer[player.id] = new Array(5))
   }
 
@@ -60,11 +72,11 @@ export class Match {
   applyCommand (command) {
     try {
       console.log(`applying command ${command.action}`)
-      var player = this.players.find(function(player) { return player.id === command.player_id })
+      var player = this.players.find(function (player) { return player.id === command.player_id })
       if (player.alive) {
         require(`../commands/${command.action}`)(this, player)
       }
-    } catch(e) {
+    } catch (e) {
       console.error(`while applying command: ${e.message}`)
     }
   }

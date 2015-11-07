@@ -1,8 +1,5 @@
-var Uuid = require('uuid')
-var matchQueue = require('../match-queue')
-
 import {Match, Player} from '../domain/domain'
-
+var matchQueue = require('../match-queue')
 var guests = 0
 
 module.exports = function gameAction (req, res) {
@@ -20,9 +17,9 @@ module.exports = function gameAction (req, res) {
   })
 }
 
-function findMatch(id) {
-  if (id) {
-    return matchQueue.find(match => match.id === id)
-  }
-  return matchQueue.filter(match => match.players.length < match.map.max_players).pop()
+function findMatch (id) {
+  if (id) return matchQueue.find(match => match.id === id)
+  return matchQueue
+    .filter(match => match.players.length < match.map.max_players)
+    .pop()
 }

@@ -5,39 +5,62 @@ module.exports = function (context, socket) {
 
     if (context.match.isReadyToStart()) {
       console.log(`starting match ${context.match.id}`)
-      context.match.start()
-      socket.to(context.match.id).emit('start-turn')
-      socket.emit('start-turn')
-
-      startGame(context, socket)
+      new GameLoop(socket, context.match).start()
     }
   }
 }
 
-function startGame (context, socket) {
-  var matchId = context.session.matchId
+class GameLoop {
+  constructor (socket, match) {
+    this.socket = socket
+    this.match = match
+  }
 
-  startTick(socket, matchId)
-    .then(function () {
-      for (var i = 0; i < 5; i++) {
-        context.match.executeSlotCommands(i)
-        socket.to(matchId).emit('render', {players: context.match.players})
-        socket.emit('render', {players: context.match.players})
+  start () {
+    this.match.turn++
+    this.run().then(() => {
+      if (this.match.isFinished()) {
+        this.emit('end-match')
+      } else {
+        this.start()
       }
     })
-}
+  }
 
-function startTick (socket, matchId) {
-  return new Promise(function (resolve, reject) {
-    scheduleTick(socket, matchId, 5, resolve)
-  })
-}
+  run () {
+    var turnDuration = 5 // 30
+    return new Promise((resolve, reject) => {
+      this.match.clearCommands()
+      this.match.acceptCommands()
+      this.emit('start-turn', { turn: this.match.turn })
+      this.scheduleTick(turnDuration, resolve)
+    }).then(() => {
+      this.executeCommands()
+      this.match.blockCommands()
+      this.match.clearCommands()
+      this.emit('end-turn')
+    })
+  }
 
-function scheduleTick (socket, matchId, timeLeft, callback) {
-  setTimeout(function () {
-    socket.to(matchId).emit('tick', { time_left: timeLeft })
-    socket.emit('tick', { time_left: timeLeft })
-    if (timeLeft > 0) scheduleTick(socket, matchId, timeLeft - 1, callback)
-    else callback()
-  }, 1000)
+  executeCommands () {
+    var slotSize = 5
+    for (var i = 0; i < slotSize; i++) {
+      this.match.executeSlotCommands(i)
+      this.emit('render', {players: this.match.players})
+    }
+  }
+
+  scheduleTick (timeLeft, callback) {
+    setTimeout(() => {
+      this.socket.to(this.match.id).emit('tick', { time_left: timeLeft })
+      this.socket.emit('tick', { time_left: timeLeft })
+      if (timeLeft > 0) this.scheduleTick(timeLeft - 1, callback)
+      else callback()
+    }, 1000)
+  }
+
+  emit (event, message) {
+    this.socket.to(this.match.id).emit(event, message)
+    this.socket.emit(event, message)
+  }
 }
