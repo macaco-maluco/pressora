@@ -9,6 +9,11 @@
     opacity: 0;
   }
 
+  &.player-facing-N {}
+  &.player-facing-S {}
+  &.player-facing-W {}
+  &.player-facing-E {}
+
   &.player-moving {
     .flames {
       animation: engine-on normal 0.5s infinite ease-in-out;
