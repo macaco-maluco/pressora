@@ -17,6 +17,18 @@
     background-repeat: no-repeat;
     padding: 25px;
     border: 0;
+
+    &.current {
+      background-color: #80DDCB;
+    }
+
+    &.past {
+      opacity: 0.5;
+    }
+
+    &.active {
+      background-color: #EA7373;
+    }
   }
 
   .action-up {
@@ -45,5 +57,9 @@
 
   .action-shield {
     background-image: url('./action-slots/button-shield.png');
+  }
+
+  .action-empty {
+    background-image: url('./action-slots/button-empty.png');
   }
 }
