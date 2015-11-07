@@ -10,6 +10,7 @@ class Match {
     this.created_at = Date.now()
     this.latest_interaction = Date.now()
     this.status = 'waiting'
+    this.turn_command_buffer = {}
   }
 
   isReadyToLoad () {
@@ -23,12 +24,33 @@ class Match {
   addPlayer (player) {
     this.players.push(player)
   }
+
+  start () {
+    this.status = 'accepting-commands'
+    this.players.forEach(player => this.turn_command_buffer[player.id] = new Array(5))
+  }
+
+  inputCommand (playerId, slot, command) {
+    this.turn_command_buffer[playerId][slot] = new Command(slot, command)
+  }
+
+  isAcceptingCommands () {
+    return this.status === 'accepting-commands'
+  }
 }
 
 class Player {
   constructor (name) {
     this.id = Uuid.v4()
     this.name = name
+  }
+}
+
+class Command {
+  constructor (slot, action) {
+    this.slot = slot
+    this.action = action
+    this.created_at = Date.now()
   }
 }
 

@@ -6,9 +6,9 @@ module.exports = function(context, socket) {
     if (context.match.isReadyToStart()) {
       var event = {}
       console.log(`starting match ${context.match.id}`)
-      context.match.status = 'started'
-      socket.to(context.match.id).emit('start-match', event)
-      socket.emit('start-match', event)
+      context.match.start()
+      socket.to(context.match.id).emit('start-turn', event)
+      socket.emit('start-turn', event)
     }
   }
 }
