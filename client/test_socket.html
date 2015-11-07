@@ -1,6 +1,6 @@
-<script src="/socket.io/socket.io.js"></script>
+<script src="/game-socket/socket.io.js"></script>
 <script>
-  window.socket = io.connect(':3000/');
+  window.socket = io.connect(':3000/', {path: '/game-socket'});
   socket.on('wait-for-players', function (data) {
     console.log('wait-for-players', data);
   });

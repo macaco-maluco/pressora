@@ -8,7 +8,8 @@ var session = require('express-session')({
   saveUninitialized: true
 })
 var sharedsession = require('express-socket.io-session')
-var io = require('socket.io').listen(server)
+var SocketIO = require('socket.io')
+var io = new SocketIO(server, { path: '/game-socket' })
 
 app.use(express.static('./client'))
 
