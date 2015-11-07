@@ -1,9 +1,11 @@
 import initialState from './initial-state'
 
 export default function (state = initialState, action) {
+  let actions
+
   switch (action.type) {
     case 'EDIT_ACTION_SLOT':
-      const actions = state.actions.map((stateAction, index) => {
+      actions = state.actions.map((stateAction, index) => {
         if (stateAction.status === 'editting') { return Object.assign({}, stateAction, { status: '' }) };
         if (index !== action.slot) { return stateAction };
         return Object.assign({}, stateAction, { status: 'editting' })
@@ -18,6 +20,14 @@ export default function (state = initialState, action) {
       })
 
       return Object.assign({}, state, { players })
+
+    case 'SELECT_ACTION':
+      actions = state.actions.map((stateAction, index) => {
+        if (stateAction.status !== 'editting') { return stateAction }
+        return Object.assign({}, action.action)
+      })
+
+      return Object.assign({}, state, { actions })
   }
 
   return state

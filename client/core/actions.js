@@ -1,4 +1,4 @@
-export function editActionSlot (slot) {
+export function editActionSlot (action, slot) {
   return {
     type: 'EDIT_ACTION_SLOT',
     slot
@@ -6,10 +6,9 @@ export function editActionSlot (slot) {
 }
 
 
-export function selectAction (slot, action) {
+export function selectAction (action) {
   return {
-    type: 'SELECT_ACTION_SLOT',
-    slot,
+    type: 'SELECT_ACTION',
     action
   }
 }
