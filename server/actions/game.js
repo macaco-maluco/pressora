@@ -9,6 +9,14 @@ class Match {
     this.created_at = Date.now()
     this.latest_interaction = Date.now()
   }
+
+  isReadyToStart () {
+    return this.players.length === this.map.max_players
+  }
+
+  addPlayer (player) {
+    this.players.push(player)
+  }
 }
 
 class Player {
@@ -26,7 +34,7 @@ module.exports = function gameAction (req, res) {
   if (!match) matchQueue.push(match = new Match())
 
   var player = new Player(`Guest ${++guests}`)
-  match.players.push(player)
+  match.addPlayer(player)
   req.session.playerId = player.id
   req.session.matchId = match.id
   res.json({
