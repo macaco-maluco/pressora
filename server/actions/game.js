@@ -6,12 +6,18 @@ class Match {
     this.id = Uuid.v4()
     this.map = Maps[Math.floor(Math.random()) % Maps.length]
     this.players = []
+    this.players_ready = {}
     this.created_at = Date.now()
     this.latest_interaction = Date.now()
+    this.status = 'waiting'
+  }
+
+  isReadyToLoad () {
+    return this.players.length === this.map.max_players
   }
 
   isReadyToStart () {
-    return this.players.length === this.map.max_players
+    return Object.keys(this.players_ready).length === this.players.length && this.status === 'waiting'
   }
 
   addPlayer (player) {

@@ -1,0 +1,54 @@
+.action-button {
+  -webkit-appearance: none;
+
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  border: 0;
+
+  &.current {
+    background-color: #80DDCB;
+  }
+
+  &.past {
+    opacity: 0.5;
+  }
+
+  &.active {
+    background-color: #EA7373;
+  }
+
+  &.action-button-up {
+    background-image: url('./action-button/action-button-up.png');
+  }
+
+  &.action-button-left {
+    background-image: url('./action-button/action-button-left.png');
+  }
+
+  &.action-button-right {
+    background-image: url('./action-button/action-button-right.png');
+  }
+
+  &.action-button-down {
+    background-image: url('./action-button/action-button-down.png');
+  }
+
+  &.action-button-beam {
+    background-image: url('./action-button/action-button-beam.png');
+  }
+
+  &.action-button-blast {
+    background-image: url('./action-button/action-button-blast.png');
+  }
+
+  &.action-button-shield {
+    background-image: url('./action-button/action-button-shield.png');
+  }
+
+  &.action-button-empty {
+    background-image: url('./action-button/action-button-empty.png');
+  }
+}

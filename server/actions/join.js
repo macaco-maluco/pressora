@@ -5,9 +5,11 @@ function findMatch (id) {
 }
 
 module.exports = function (io) {
+  // auth
   io.use(function (socket, next) {
     var session = socket.handshake.session
     var match = findMatch(session.matchId)
+
     if (!match) {
       next(new Error('no matches found'))
     } else {
@@ -18,10 +20,11 @@ module.exports = function (io) {
   io.on('connection', function (socket) {
     var session = socket.handshake.session
     var match = findMatch(session.matchId)
-    if (match.isReadyToStart()) {
-      socket.emit('start-match')
-    } else {
-      socket.emit('wait-for-players')
+    var context = {
+      session: session,
+      match: match
     }
+    require('../events/connection')(context, socket)
+    socket.on('client-ready', require('../events/client-ready')(context, socket))
   })
 }
