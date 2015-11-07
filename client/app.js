@@ -1,5 +1,5 @@
 import React from 'react'
-import GameMap from './game-map'
+import GameMap from './game-map/game-map'
 import './app.scss'
 
 // static map for the moment
