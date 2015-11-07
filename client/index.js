@@ -1,5 +1,24 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './app'
+import { render } from 'react-dom'
+import { bindActionCreators } from 'redux'
+import { connect, Provider } from 'react-redux'
 
-ReactDOM.render(<App/>, document.getElementById('main'))
+import App from './app'
+import store from './core/store'
+import * as Actions from './core/actions'
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+
+render(<Provider store={store}>
+  <ConnectedApp/>
+</Provider>, document.getElementById('main'))
+
+function mapStateToProps (state) {
+  return {
+    map: state.map
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(Actions, dispatch)
+}
