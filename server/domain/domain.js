@@ -94,7 +94,7 @@ export class Player {
   die (reason) {
     console.log(`player ${this.name} died. Reason: ${reason} :(`)
     this.alive = false
-    if (!this.death_reason) this.death_reason = reason
+    this.death_reason = reason
   }
 
   walk (coord) {
@@ -118,6 +118,10 @@ export class Player {
     if (this.battery <= 0) this.die('battery')
     console.log(`player ${this.name} current battery at ${this.battery}`)
     return this.alive
+  }
+
+  increaseBattery (amount) {
+    this.battery = Math.max(100, this.battery + amount)
   }
 }
 

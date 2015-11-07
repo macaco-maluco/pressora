@@ -1,18 +1,19 @@
+var Commons = require('./common')
+
 module.exports = function(match, player) {
+  var playerDestination = Commons.findDestination(match.map, player.pos, player.pos.facing)
 
-  var playerDestination = findDestination(match.map, player, player.pos.facing)
+  console.log(`player ${player.name} trying to move from `, player.pos, 'to', playerDestination)
 
-  console.log(`player ${player.name} trying to move from `, player.pos, playerDestination)
-
-  if (isOutsideMap(playerDestination)) {
-    player.die('fall')
-  } else {
-    if (player.decreaseBattery(10)) {
-      if (isWalkable(match.map, playerDestination.terrain_type)) {
+  if (player.decreaseBattery(10)) {
+    if (Commons.isOutsideMap(playerDestination)) {
+      player.die('fall')
+    } else {
+      if (Commons.isWalkable(match.map, playerDestination.terrain_type)) {
         var enemy = findPlayer(match, playerDestination.coord)
         if (enemy) {
-          var enemyDestination = findDestination(match.map, enemy, player.pos.facing)
-          if (isOutsideMap(enemyDestination)) {
+          var enemyDestination = Commons.findDestination(match.map, enemy.pos, player.pos.facing)
+          if (Commons.isOutsideMap(enemyDestination)) {
             enemy.die('push-fall')
           } else {
             enemy.walk(enemyDestination.coord)
@@ -24,38 +25,6 @@ module.exports = function(match, player) {
   }
 }
 
-function findDestination(map, player, facingDirection) {
-  var coord = findFacingCoord(player, facingDirection)
-  var terrain_type = findTerrainType(map, coord)
-  return {coord: coord, terrain_type: terrain_type}
-}
-
-function findFacingCoord(player, facingDirection) {
-  switch (facingDirection) {
-    case 'N':
-      return {x: player.pos.x, y: player.pos.y - 1}
-    case 'E':
-      return {x: player.pos.x + 1, y: player.pos.y}
-    case 'S':
-      return {x: player.pos.x, y: player.pos.y + 1}
-    case 'W':
-      return {x: player.pos.x - 1, y: player.pos.y}
-  }
-}
-
-function findTerrainType(map, coord) {
-  var x = map.coords[coord.x]
-  return x ? x[coord.y] : undefined
-}
-
 function findPlayer(match, coord) {
   return match.players.find(p => p.pos.x === coord.x && p.pos.y === coord.y)
-}
-
-function isOutsideMap(destination) {
-  return !destination.terrain_type
-}
-
-function isWalkable(map, terrain_type) {
-  return map.terrain_types.walk.indexOf(terrain_type) !== -1
 }
