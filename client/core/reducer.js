@@ -1,4 +1,5 @@
 import initialState from './initial-state'
+import backend from './backend'
 
 export default function (state = initialState, action) {
   let actions, players
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
     case 'SELECT_ACTION':
       actions = state.actions.map((stateAction, index) => {
         if (stateAction.status !== 'editting') { return stateAction }
+        backend.sendCommand({ slot: index, command: action.action.type })
         return Object.assign({}, action.action)
       })
 
