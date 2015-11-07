@@ -19,9 +19,11 @@ function startGame (context, socket) {
 
   startTick(socket, matchId)
     .then(function () {
-      context.match.executeCommands()
-      socket.to(matchId).emit('render', {})
-      socket.emit('render', {})
+      for (var i = 0; i < 5; i++) {
+        context.match.executeSlotCommands(i)
+        socket.to(matchId).emit('render', {players: context.match.players})
+        socket.emit('render', {players: context.match.players})
+      }
     })
 }
 

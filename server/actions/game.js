@@ -49,13 +49,11 @@ class Match {
   }
 
   executeCommands () {
-    for (var i = 0; i < 5; i++) {
-      Object.keys(this.turn_command_buffer)
-        .map((id) => this.turn_command_buffer[id][i])
-        .filter(command => command)
-        .sort((a, b) => a.created_at - b.created_at)
-        .forEach(command => this.applyCommand(command))
-    }
+    Object.keys(this.turn_command_buffer)
+      .map((id) => this.turn_command_buffer[id][i])
+      .filter(command => command)
+      .sort((a, b) => a.created_at - b.created_at)
+      .forEach(command => this.applyCommand(command))
   }
 
   applyCommand (command) {
