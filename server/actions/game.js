@@ -43,6 +43,9 @@ class Player {
   constructor (name) {
     this.id = Uuid.v4()
     this.name = name
+    this.life = 3
+    this.battery = 100
+    this.alive = true
   }
 }
 

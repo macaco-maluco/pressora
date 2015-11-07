@@ -10,6 +10,12 @@
   socket.on('start-turn', function (data) {
     console.log('start-turn', data);
   });
+  socket.on('tick', function (data) {
+    console.log('tick', data);
+  });
+  socket.on('render', function (data) {
+    console.log('render', data);
+  });
 </script>
 
 <button onclick="javascript:socket.emit('client-ready'); console.log('btn: client ready')">client ready</button>

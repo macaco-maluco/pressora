@@ -1,5 +1,5 @@
-module.exports = function(context, socket) {
-  return function(message) {
+module.exports = function (context, socket) {
+  return function (message) {
     var slot = message.slot
     var command = message.command
 
