@@ -1,0 +1,27 @@
+{
+  "name": "macaco-frito",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nko5/macaco-frito.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nko5/macaco-frito/issues"
+  },
+  "homepage": "https://github.com/nko5/macaco-frito#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "babel": "^6.0.15"
+  }
+}
