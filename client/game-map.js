@@ -1,5 +1,4 @@
 import React from 'react'
-import './game-map.scss'
 
 export default React.createClass({
   propTypes: {
