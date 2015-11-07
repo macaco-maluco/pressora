@@ -23,6 +23,7 @@ axios.get('/game')
       console.log('tick', data)
     })
     socket.on('render', function (data) {
+      store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
       console.log('render', data)
     })
     socket.on('end-turn', function (data) {
