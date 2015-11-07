@@ -1,3 +1,4 @@
 module.exports = function(match, player) {
-  if (player.decreaseBattery(5)) player.spinLeft()
+  console.log(`player ${player.name} is recharging`)
+  player.increaseBattery(20)
 }

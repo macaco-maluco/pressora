@@ -1,7 +1,7 @@
 const commons = {
   findDestination (map, playerPosition, facingDirection) {
     var coord = commons.findFacingCoord(playerPosition, facingDirection)
-    var terrain_type = comons.findTerrainType(map, coord)
+    var terrain_type = commons.findTerrainType(map, coord)
     return {coord: coord, terrain_type: terrain_type}
   },
 
@@ -29,7 +29,15 @@ const commons = {
 
   isWalkable (map, terrain_type) {
     return map.terrain_types.walk.indexOf(terrain_type) !== -1
-  }
+  },
+
+  isWall(map, terrain_type) {
+    return map.terrain_types.wall.indexOf(terrain_type) !== -1
+  },
+
+  findPlayer (match, coord) {
+    return match.players.find(player => player.pos.x === coord.x && player.pos.y === coord.y)
+  },
 }
 
 export default commons

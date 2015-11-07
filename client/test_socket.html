@@ -24,5 +24,10 @@
   });
 </script>
 
-<button onclick="javascript:socket.emit('client-ready'); console.log('btn: client ready')">client ready</button>
+<button onclick="javascript:socket.emit('client-ready');">client ready</button>
 <button onclick="javascript:socket.emit('command', {slot: 0, command: 'forward'});">forward</button>
+<button onclick="javascript:socket.emit('command', {slot: 1, command: 'backward'});">backward</button>
+<button onclick="javascript:socket.emit('command', {slot: 2, command: 'spin-left'});">spin-left</button>
+<button onclick="javascript:socket.emit('command', {slot: 3, command: 'spin-right'});">spin-right</button>
+<button onclick="javascript:socket.emit('command', {slot: 4, command: 'beam'});">beam</button>
+<button onclick="javascript:socket.emit('command', {slot: 0, command: 'recharge'});">recharge</button>

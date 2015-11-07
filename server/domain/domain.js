@@ -71,13 +71,13 @@ export class Match {
 
   applyCommand (command) {
     try {
-      console.log(`applying command ${command.action}`)
       var player = this.players.find(function (player) { return player.id === command.player_id })
       if (player.alive) {
+        console.log(`applying command ${command.action}`)
         require(`../commands/${command.action}`)(this, player)
       }
     } catch (e) {
-      console.error(`while applying command: ${e.message}`)
+      console.error(`while applying command ${command.action}: ${e.message}`)
     }
   }
 }
@@ -104,12 +104,12 @@ export class Player {
   }
 
   spinLeft () {
-    console.log(`player ${player.name} spinning left`)
+    console.log(`player ${this.name} spinning left`)
     this.pos.facing = Directions[this.pos.facing].left
   }
 
   spinRight () {
-    console.log(`player ${player.name} spinning right`)
+    console.log(`player ${this.name} spinning right`)
     this.pos.facing = Directions[this.pos.facing].right
   }
 
@@ -121,7 +121,16 @@ export class Player {
   }
 
   increaseBattery (amount) {
-    this.battery = Math.max(100, this.battery + amount)
+    this.battery = Math.min(100, this.battery + amount)
+    console.log(`player ${this.name} current battery at ${this.battery}`)
+  }
+
+  takeDamage () {
+    console.log(`player ${this.name} took 1 damage.`)
+    this.life--
+    if (this.life <= 0) {
+      this.die('damage')
+    }
   }
 }
 
