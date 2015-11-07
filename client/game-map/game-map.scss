@@ -1,6 +1,11 @@
 .game-map {
-  margin: 0 auto;
-  border-spacing: 0;
+
+  table {
+    width: 100%;
+    height: 100%;
+    border-spacing: 0;
+  }
+
   td {
     border: 1px solid #80DDCB;
     padding: 0;

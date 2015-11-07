@@ -1,6 +1,8 @@
 import React from 'react'
 import GameMap from './game-map/game-map'
+import GameMapNode from './game-map/game-map-node'
 import ActionSlots from './action-slots/action-slots'
+import Player from './player/player'
 import './app.scss'
 
 export default React.createClass({
@@ -14,7 +16,12 @@ export default React.createClass({
 
   render: function () {
     return <div className='app'>
-      <GameMap map={this.props.map}/>
+      <GameMap map={this.props.map}>
+        <GameMapNode x={5} y={3}>
+          <Player />
+        </GameMapNode>
+      </GameMap>
+
       <ActionSlots className='selected-actions' onClick={this.props.editActionSlot} actions={this.props.actions}/>
 
       {
