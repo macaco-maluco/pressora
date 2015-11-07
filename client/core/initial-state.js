@@ -21,11 +21,11 @@ export default {
   },
 
   actions: [
-    'up',
-    'down',
-    'right',
-    'right',
-    'empty',
-    'empty'
+    { type: 'empty' },
+    { type: 'empty' },
+    { type: 'empty' },
+    { type: 'empty' },
+    { type: 'empty' },
+    { type: 'empty' }
   ]
 }

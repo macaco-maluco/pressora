@@ -6,13 +6,14 @@ import './app.scss'
 export default React.createClass({
   propTypes: {
     map: React.PropTypes.object,
-    actions: React.PropTypes.array
+    actions: React.PropTypes.array,
+    editActionSlot: React.PropTypes.func
   },
 
   render: function () {
     return <div className='app'>
       <GameMap map={this.props.map}/>
-      <ActionSlots actions={this.props.actions}/>
+      <ActionSlots onClick={this.props.editActionSlot} actions={this.props.actions}/>
     </div>
   }
 })

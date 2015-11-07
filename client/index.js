@@ -14,6 +14,8 @@ render(<Provider store={store}>
 </Provider>, document.getElementById('main'))
 
 function mapStateToProps (state) {
+  console.log('render!!!', state.actions)
+
   return state
 }
 
