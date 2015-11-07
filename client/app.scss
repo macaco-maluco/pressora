@@ -7,7 +7,8 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #333333;
+  background-image: url('./background.jpg');
+  background-size: cover;
 }
 
 
@@ -16,7 +17,7 @@ body {
   position: relative;
 
   .available-actions {
-    background: #EA7373;
+    background: rgba(81, 59, 108, 0.6);
   }
 
   @media screen and (orientation:portrait) {
