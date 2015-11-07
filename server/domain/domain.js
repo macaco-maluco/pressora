@@ -1,5 +1,6 @@
 var Maps = require('../maps')
 var Uuid = require('uuid')
+var Directions = require('./directions')
 
 export class Match {
   constructor () {
@@ -88,6 +89,14 @@ export class Player {
     console.log(`player ${this.name} moving to `, coord)
     this.pos.x = coord.x
     this.pos.y = coord.y
+  }
+
+  spinLeft () {
+    this.pos.facing = Directions[this.pos.facing].left
+  }
+
+  spinRight () {
+    this.pos.facing = Directions[this.pos.facing].right
   }
 }
 
