@@ -13,3 +13,12 @@ export function selectAction (slot, action) {
     action
   }
 }
+
+
+export function movePlayer (playerId, newPosition) {
+  return {
+    type: 'MOVE_PLAYER',
+    playerId,
+    newPosition
+  }
+}

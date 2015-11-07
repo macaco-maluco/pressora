@@ -1,5 +1,10 @@
 .game-map {
 
+  .game-map-node {
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+  }
+
   table {
     width: 100%;
     height: 100%;

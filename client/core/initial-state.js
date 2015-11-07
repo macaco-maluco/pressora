@@ -20,6 +20,11 @@ export default {
     'max_players': 4
   },
 
+  players: [
+    { pos: { x: 1, y: 1 } },
+    { pos: { x: 2, y: 6 } }
+  ],
+
   actions: [
     { type: 'empty' },
     { type: 'empty' },

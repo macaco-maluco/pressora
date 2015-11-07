@@ -9,17 +9,27 @@ export default React.createClass({
   propTypes: {
     map: React.PropTypes.object,
     actions: React.PropTypes.array,
+    players: React.PropTypes.array,
     availableActions: React.PropTypes.array,
     editActionSlot: React.PropTypes.func,
-    selectAction: React.PropTypes.func
+    selectAction: React.PropTypes.func,
+    movePlayer: React.PropTypes.func
+  },
+
+  componentDidMount: function () {
+    setTimeout(() => this.props.movePlayer(0, { x: 1, y: 2 }), 2000)
   },
 
   render: function () {
     return <div className='app'>
       <GameMap map={this.props.map}>
-        <GameMapNode x={5} y={3}>
-          <Player />
-        </GameMapNode>
+        {
+          this.props.players.map((player, index) => {
+            return <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
+              <Player />
+            </GameMapNode>
+          })
+        }
       </GameMap>
 
       <ActionSlots className='selected-actions' onClick={this.props.editActionSlot} actions={this.props.actions}/>

@@ -32,7 +32,7 @@ export default React.createClass({
           const width = `${cellWidth}%`
           const height = `${cellWidth}%`
 
-          return <div style={{ position: 'absolute', left, top, width, height }}>
+          return <div className='game-map-node' style={{ left, top, width, height }}>
             {child}
           </div>
         })

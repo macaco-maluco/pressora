@@ -10,6 +10,14 @@ export default function (state = initialState, action) {
       })
 
       return Object.assign({}, state, { actions })
+
+    case 'MOVE_PLAYER':
+      const players = state.players.map((player, index) => {
+        if (index !== action.playerId) { return player }
+        return Object.assign({}, player, { pos: action.newPosition })
+      })
+
+      return Object.assign({}, state, { players })
   }
 
   return state
