@@ -11,7 +11,7 @@ var sharedsession = require('express-socket.io-session')
 var SocketIO = require('socket.io')
 var io = new SocketIO(server, { path: '/game-socket' })
 
-app.use(express.static('./client'))
+// app.use(express.static('./client'))
 
 app.use(session)
 io.use(sharedsession(session))
