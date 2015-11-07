@@ -5,6 +5,10 @@ export default function (state = initialState, action) {
   let actions, players
 
   switch (action.type) {
+    case 'CLEAN_COMMANDS':
+      actions = initialState.actions
+      return Object.assign({}, state, { actions })
+
     case 'EDIT_ACTION_SLOT':
       actions = state.actions.map((stateAction, index) => {
         if (stateAction.status === 'editting') { return Object.assign({}, stateAction, { status: '' }) };

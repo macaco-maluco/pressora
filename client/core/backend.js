@@ -17,6 +17,7 @@ axios.get('/game')
       socket.emit('client-ready')
     })
     socket.on('start-turn', function (data) {
+      store.dispatch({ type: 'CLEAN_COMMANDS' })
       console.log('start-turn', data)
     })
     socket.on('tick', function (data) {
