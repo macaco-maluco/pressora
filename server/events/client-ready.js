@@ -14,7 +14,7 @@ class GameLoop {
   constructor (socket, match) {
     this.socket = socket
     this.match = match
-    this.turnDuration = 5 // 30
+    this.turnDuration = 30
   }
 
   start () {
