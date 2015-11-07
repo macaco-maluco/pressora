@@ -18,5 +18,14 @@ export default {
       'wall': [1]
     },
     'max_players': 4
-  }
+  },
+
+  actions: [
+    'up',
+    'down',
+    'right',
+    'right',
+    'empty',
+    'empty'
+  ]
 }

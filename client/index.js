@@ -14,9 +14,7 @@ render(<Provider store={store}>
 </Provider>, document.getElementById('main'))
 
 function mapStateToProps (state) {
-  return {
-    map: state.map
-  }
+  return state
 }
 
 function mapDispatchToProps (dispatch) {
