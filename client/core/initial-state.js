@@ -12,12 +12,13 @@ export default {
   ],
 
   availableActions: [
-    { type: 'up' },
-    { type: 'down' },
-    { type: 'left' },
-    { type: 'right' },
+    { type: 'forward' },
+    { type: 'backward' },
+    { type: 'spin-left' },
+    { type: 'spin-right' },
     { type: 'beam' },
     { type: 'blast' },
-    { type: 'shield' }
+    { type: 'shield' },
+    { type: 'recharge' }
   ]
 }
