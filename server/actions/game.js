@@ -18,19 +18,18 @@ class Player {
   }
 }
 
-var matchQueue = []
+var matchQueue = require('../match-queue')
 var guests = 0
 
 module.exports = function gameAction (req, res) {
-  var matchToJoin = matchQueue.filter(match => { match.players.length < match.map.max_players }).pop()
-  if (!matchToJoin) matchQueue.push(matchToJoin = new Match())
+  var match = matchQueue.filter(match => { match.players.length < match.map.max_players }).pop()
+  if (!match) matchQueue.push(match = new Match())
 
   var player = new Player(`Guest ${++guests}`)
-  matchToJoin.players.push(player)
+  match.players.push(player)
   req.session.playerId = player.id
-
+  req.session.matchId = match.id
   res.json({
-    match_id: matchToJoin.id,
-    map: matchToJoin.map
+    map: match.map
   })
 }

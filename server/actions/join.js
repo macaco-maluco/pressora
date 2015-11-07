@@ -1,7 +1,7 @@
 module.exports = function (io) {
   io.on('connection', function (socket) {
-    console.log('socket connection')
-    var req = socket.request
-    console.log(req)
+    var session = socket.handshake.session
+    console.log(session)
+    socket.emit('wait')
   })
 }

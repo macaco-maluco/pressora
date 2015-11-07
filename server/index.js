@@ -2,16 +2,18 @@ var express = require('express')
 var http = require('http')
 var app = express()
 var server = http.createServer(app)
-var session = require('express-session')
+var session = require('express-session')({
+  secret: require('./session-secret'),
+  resave: false,
+  saveUninitialized: true
+})
+var sharedsession = require('express-socket.io-session')
 var io = require('socket.io').listen(server)
 
 app.use(express.static('./client'))
 
-app.use(session({
-  secret: require('./session-secret'),
-  resave: false,
-  saveUninitialized: true
-}))
+app.use(session)
+io.use(sharedsession(session))
 
 require('./maps')
 require('./static-assets')(app)
