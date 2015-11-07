@@ -1,0 +1,49 @@
+.action-slots {
+  padding: 0;
+  list-style-type: none;
+  height: 64px;
+
+  li {
+    display: inline-block;
+  }
+
+  button {
+    -webkit-appearance: none;
+
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    padding: 25px;
+    border: 0;
+  }
+
+  .action-up {
+    background-image: url('./action-slots/button-up.png');
+  }
+
+  .action-left {
+    background-image: url('./action-slots/button-left.png');
+  }
+
+  .action-right {
+    background-image: url('./action-slots/button-right.png');
+  }
+
+  .action-down {
+    background-image: url('./action-slots/button-down.png');
+  }
+
+  .action-beam {
+    background-image: url('./action-slots/button-beam.png');
+  }
+
+  .action-blast {
+    background-image: url('./action-slots/button-blast.png');
+  }
+
+  .action-shield {
+    background-image: url('./action-slots/button-shield.png');
+  }
+}

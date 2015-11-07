@@ -1,5 +1,12 @@
 @import 'normalize.css/normalize';
 @import './game-map/game-map';
+@import './action-slots/action-slots';
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #333333;
+}
 
 .app {
   .game-map {
@@ -11,6 +18,12 @@
       width: 100vw;
       height: 100vw;
     }
+
+    .action-slots {
+      bottom: 5px;
+      left: 5px;
+      width: 100%;
+    }
   }
 
   @media screen and (orientation:landscape) {
@@ -18,5 +31,15 @@
       width: 100vh;
       height: 100vh;
     }
+
+    .action-slots {
+      top: 5px;
+      left: 5px;
+      width: 64px;
+    }
+  }
+
+  .action-slots {
+    position: absolute;
   }
 }

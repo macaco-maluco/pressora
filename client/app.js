@@ -1,5 +1,6 @@
 import React from 'react'
 import GameMap from './game-map/game-map'
+import ActionSlots from './action-slots/action-slots'
 import './app.scss'
 
 // static map for the moment
@@ -28,6 +29,7 @@ export default React.createClass({
   render: function () {
     return <div className='app'>
       <GameMap map={map}/>
+      <ActionSlots/>
     </div>
   }
 })
