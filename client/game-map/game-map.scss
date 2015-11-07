@@ -1,18 +1,16 @@
 .game-map {
   margin: 0 auto;
   border-spacing: 0;
-  background: #6A9D47;
   td {
+    border: 1px solid #80DDCB;
     padding: 0;
 
     &.cell-1 {
-      background: url('./terrain-types/map-cell-1.svg') no-repeat;
-      background-size: contain;
+      background: #09B39C;
     }
 
     &.cell-14 {
-      background: url('./terrain-types/map-cell-14.svg') no-repeat;
-      background-size: contain;
+      background: #B6F2E7;
     }
   }
 }
