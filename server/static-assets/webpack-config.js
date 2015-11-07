@@ -76,7 +76,7 @@ export default {
       {
         test: /\.scss$/,
         // Query parameters are passed to node-sass
-        loader: 'style!css!resolve-url!sass?sourceMap&outputStyle=expanded&' +
+        loader: 'style!css!autoprefixer-loader?browsers=last 2 versions!resolve-url!sass?sourceMap&outputStyle=expanded&' +
           'includePaths[]=' + (path.resolve(projectPath, './node_modules'))
       },
       {
