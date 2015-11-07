@@ -23,7 +23,7 @@
     "express": "^4.13.3"
   },
   "devDependencies": {
-    "babel": "^6.0.15",
+    "babel": "^5.8.23",
     "modulus": "^5.0.1",
     "standard": "^5.3.1"
   }
