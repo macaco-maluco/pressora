@@ -22,20 +22,20 @@
     background-color: rgba(81, 59, 108, 0.6);;
   }
 
-  &.action-button-up {
-    background-image: url('./action-button/action-button-up.png');
+  &.action-button-forward {
+    background-image: url('./action-button/action-button-forward.png');
   }
 
-  &.action-button-left {
-    background-image: url('./action-button/action-button-left.png');
+  &.action-button-spin-left {
+    background-image: url('./action-button/action-button-spin-left.png');
   }
 
-  &.action-button-right {
-    background-image: url('./action-button/action-button-right.png');
+  &.action-button-spin-right {
+    background-image: url('./action-button/action-button-spin-right.png');
   }
 
-  &.action-button-down {
-    background-image: url('./action-button/action-button-down.png');
+  &.action-button-backward {
+    background-image: url('./action-button/action-button-backward.png');
   }
 
   &.action-button-beam {
@@ -52,5 +52,9 @@
 
   &.action-button-empty {
     background-image: url('./action-button/action-button-empty.png');
+  }
+
+  &.action-button-recharge {
+    background-image: url('./action-button/action-button-recharge.png');
   }
 }
