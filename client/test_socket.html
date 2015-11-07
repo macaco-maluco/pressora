@@ -1,10 +1,15 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect(':3000/');
-  socket.on('start-match', function (data) {
-    console.log('start-match');
-  });
+  window.socket = io.connect(':3000/');
   socket.on('wait-for-players', function (data) {
-    console.log('wait-for-players');
+    console.log('wait-for-players', data);
+  });
+  socket.on('prepare-match', function (data) {
+    console.log('prepare-match', data);
+  });
+  socket.on('start-match', function (data) {
+    console.log('start-match', data);
   });
 </script>
+
+<button onclick="javascript:socket.emit('client-ready'); console.log('btn: client ready')">client ready</button>
