@@ -38,6 +38,7 @@
     "html-webpack-plugin": "^1.6.1",
     "jasmine-core": "^2.3.4",
     "node-sass": "^3.3.3",
+    "normalize.css": "^3.0.3",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-transform-catch-errors": "^1.0.0",
