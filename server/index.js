@@ -10,7 +10,7 @@ var session = require('express-session')({
 var sharedsession = require('express-socket.io-session')
 var io = require('socket.io').listen(server)
 
-// app.use(express.static('./client'))
+app.use(express.static('./client'))
 
 app.use(session)
 io.use(sharedsession(session))
