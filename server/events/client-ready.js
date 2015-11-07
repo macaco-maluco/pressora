@@ -14,6 +14,7 @@ class GameLoop {
   constructor (socket, match) {
     this.socket = socket
     this.match = match
+    this.turnDuration = 5 // 30
   }
 
   start () {
@@ -28,12 +29,11 @@ class GameLoop {
   }
 
   run () {
-    var turnDuration = 5 // 30
     return new Promise((resolve, reject) => {
       this.match.clearCommands()
       this.match.acceptCommands()
       this.emit('start-turn', { turn: this.match.turn })
-      this.scheduleTick(turnDuration, resolve)
+      this.scheduleTick(this.turnDuration, resolve)
     }).then(() => {
       this.executeCommands()
       this.match.blockCommands()
@@ -52,8 +52,7 @@ class GameLoop {
 
   scheduleTick (timeLeft, callback) {
     setTimeout(() => {
-      this.socket.to(this.match.id).emit('tick', { time_left: timeLeft })
-      this.socket.emit('tick', { time_left: timeLeft })
+      this.emit('tick', { time_left: timeLeft })
       if (timeLeft > 0) this.scheduleTick(timeLeft - 1, callback)
       else callback()
     }, 1000)

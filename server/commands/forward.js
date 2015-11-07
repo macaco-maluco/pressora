@@ -7,11 +7,7 @@ module.exports = function(match, player) {
   if (isOutsideMap(playerDestination)) {
     player.die('fall')
   } else {
-    player.battery -= 10
-    console.log(`player ${player.name} current battery at ${player.battery}`)
-    if (player.battery <= 0) {
-      player.die('battery')
-    } else {
+    if (player.decreaseBattery(10)) {
       if (isWalkable(match.map, playerDestination.terrain_type)) {
         var enemy = findPlayer(match, playerDestination.coord)
         if (enemy) {

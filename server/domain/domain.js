@@ -104,11 +104,20 @@ export class Player {
   }
 
   spinLeft () {
+    console.log(`player ${player.name} spinning left`)
     this.pos.facing = Directions[this.pos.facing].left
   }
 
   spinRight () {
+    console.log(`player ${player.name} spinning right`)
     this.pos.facing = Directions[this.pos.facing].right
+  }
+
+  decreaseBattery (amount) {
+    this.battery -= amount
+    if (this.battery <= 0) this.die('battery')
+    console.log(`player ${this.name} current battery at ${this.battery}`)
+    return this.alive
   }
 }
 
