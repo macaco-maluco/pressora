@@ -8,6 +8,6 @@ export default React.createClass({
   },
 
   render: function () {
-    return <button onClick={this.props.onClick} className={`action-button action-button-${this.props.action} ${this.props.status}`}></button>
+    return <button onTouchStart={this.props.onClick} onClick={this.props.onClick} className={`action-button action-button-${this.props.action} ${this.props.status}`}></button>
   }
 })

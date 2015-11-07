@@ -20,8 +20,12 @@ export default React.createClass({
     setTimeout(() => this.props.movePlayer(0, { x: 1, y: 2 }), 2000)
   },
 
+  handleTouch: function (e) {
+    e.preventDefault()
+  },
+
   render: function () {
-    return <div className='app'>
+    return <div className='app' onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
       <GameMap map={this.props.map}>
         {
           this.props.players.map((player, index) => {
