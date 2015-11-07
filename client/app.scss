@@ -9,37 +9,34 @@ body {
 }
 
 .app {
-  .game-map {
-    margin: 0 auto;
-  }
+  margin: 0 auto;
+  position: relative;
 
   @media screen and (orientation:portrait) {
-    .game-map {
+    .action-slots {
+      position: absolute;
       width: 100vw;
-      height: 100vw;
+      text-align: center;
+      bottom: -64px;
     }
 
-    .action-slots {
-      bottom: 5px;
-      left: 5px;
-      width: 100%;
+    &, .game-map {
+      width: 100vw;
+      height: 100vw;
     }
   }
 
   @media screen and (orientation:landscape) {
-    .game-map {
+    .action-slots {
+      position: absolute;
+      width: 64px;
+      left: -64px;
+      top: 0;
+    }
+
+    &, .game-map {
       width: 100vh;
       height: 100vh;
     }
-
-    .action-slots {
-      top: 5px;
-      left: 5px;
-      width: 64px;
-    }
-  }
-
-  .action-slots {
-    position: absolute;
   }
 }
