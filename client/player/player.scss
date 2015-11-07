@@ -5,11 +5,34 @@
   background-size: 100%;
   background-position: center;
 
+  .flames {
+    opacity: 0;
+  }
+
+  &.player-moving {
+    .flames {
+      animation: engine-on normal 0.5s infinite ease-in-out;
+    }
+  }
+
   &.player-1 {
     background-image: url('./player/player-1.png');
+
+    .flames {
+      width: 45px;
+      height: 82px;
+      background-image: url('./player/player-1-flames.png');
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin: -16px -23px;
+    }
   }
 
   &.player-2 {
     background-image: url('./player/player-2.png');
   }
 }
+
+
+@keyframes engine-on {0%{opacity:1;} 50%{opacity:0.5;} 100%{opacity:1;}}
