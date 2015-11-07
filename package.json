@@ -6,7 +6,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard",
     "deploy": "modulus deploy"
   },
   "repository": {
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "babel": "^6.0.15",
-    "modulus": "^5.0.1"
+    "modulus": "^5.0.1",
+    "standard": "^5.3.1"
   }
 }

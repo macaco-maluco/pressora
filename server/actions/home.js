@@ -1,3 +1,3 @@
-module.exports = function homeAction(req, res) {
+module.exports = function homeAction (req, res) {
   res.send('Hello Robots!')
 }
