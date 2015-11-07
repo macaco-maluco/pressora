@@ -18,14 +18,10 @@ module.exports = function (io) {
   io.on('connection', function (socket) {
     var session = socket.handshake.session
     var match = findMatch(session.matchId)
-    console.log(match.isReadyToStart)
-    var interval = setInterval(function () {
-      if (match.isReadyToStart()) {
-        clearInterval(interval)
-        socket.emit('start-match')
-      } else {
-        socket.emit('wait-for-players')
-      }
-    }, 1000)
+    if (match.isReadyToStart()) {
+      socket.emit('start-match')
+    } else {
+      socket.emit('wait-for-players')
+    }
   })
 }
