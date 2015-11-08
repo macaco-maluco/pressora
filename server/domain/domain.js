@@ -150,7 +150,7 @@ export class Player {
   }
 
   logBatteryLevel() {
-    console.log(`player ${this.name} current battery at ${this.battery}`)
+    console.log(`player ${this.name} current battery level: ${this.battery}%`)
   }
 }
 
