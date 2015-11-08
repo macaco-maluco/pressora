@@ -11,7 +11,7 @@ export class Match {
 
   constructor () {
     this.id = Uuid.v4()
-    this.map = Maps[Math.floor(Math.random()) % Maps.length]
+    this.map = Maps[Math.floor(parseInt(Math.random() * 100, 10) % Maps.length)]
     this.turn = 0
     this.players = []
     this.players_ready = {}
