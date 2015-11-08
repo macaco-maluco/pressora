@@ -20,7 +20,14 @@ export default React.createClass({
         Your browser does not support the <code>audio</code> element.
       </audio>
       <div className='flames'/>
-      <div className='beam'/>
+      <div className='beam'>
+        <div className='light'/>
+        <div className='light'/>
+        <div className='light'/>
+        <div className='light'/>
+        <div className='light'/>
+        <div className='light'/>
+      </div>
       <div className='blast'>
         <div className='particle'/>
         <div className='particle'/>

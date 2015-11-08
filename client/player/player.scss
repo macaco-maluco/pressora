@@ -64,11 +64,11 @@
         animation: blast-on ease-in-out 0.8s alternate;
 
         &:nth-child(2) {
-          -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
         }
 
         &:nth-child(3) {
-          -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
         }
       }
     }
@@ -86,11 +86,11 @@
   }
 
   .beam {
-    position: absolute;
-    width: 1px;
-    height: 100px;
-    bottom: 100%;
-    left: 50%;
+    .light {
+      width: 1px;
+      height: 100px;
+      position: absolute;
+    }
   }
 
   .blast {
@@ -113,10 +113,35 @@
     .flames {
       background-image: url('./player/flames-green.png');
     }
-
     .beam {
-      background-color: #2AF19F;
-      box-shadow: 0px 0px 10px 5px #2AF19F;
+      .light {
+        background-color: #2AF19F;
+        box-shadow: 0px 0px 10px 2px #2AF19F;
+        &:nth-child(1) {
+          bottom: 90%;
+          left: 38%;
+        }
+        &:nth-child(2) {
+          bottom: 90%;
+          left: 62%;
+        }
+        &:nth-child(3) {
+          bottom: 55%;
+          left: 66%;
+        }
+        &:nth-child(4) {
+          bottom: 55%;
+          left: 34%;
+        }
+        &:nth-child(5) {
+          bottom: 50%;
+          left: 23%;
+        }
+        &:nth-child(6) {
+          bottom: 50%;
+          left: 77%;
+        }
+      }
     }
   }
 
@@ -127,6 +152,33 @@
 
     .flames {
       background-image: url('./player/flames-red.png');
+    }
+    
+    .beam {
+      .light {
+        background-color: #D9555D;
+        &:nth-child(1) {
+          bottom: 80%;
+          left: 35%;
+          box-shadow: 0px 0px 10px 7px #D9555D;
+        }
+        &:nth-child(2) {
+          bottom: 80%;
+          left: 65%;
+          box-shadow: 0px 0px 10px 7px #D9555D;
+        }
+        &:nth-child(3) {
+          bottom: 65%;
+          left: 21%;
+          box-shadow: 0px 0px 10px 5px #D9555D;
+        }
+        &:nth-child(4) {
+          bottom: 65%;
+          left: 78%;
+          box-shadow: 0px 0px 10px 5px #D9555D;
+        }
+        &:nth-child(5), &:nth-child(6) {opacity: 0;}
+      }
     }
   }
   
@@ -139,8 +191,25 @@
     }
 
     .beam {
-      background-color: #0dd;
-      box-shadow: 0px 0px 10px 5px #0ff;
+      .light {
+        background-color: #0dd;
+        &:nth-child(1) {
+          bottom: 90%;
+          left: 50%;
+          box-shadow: 0px 0px 10px 5px #0ff;
+        }
+        &:nth-child(2) {
+          bottom: 75%;
+          left: 25%;
+          box-shadow: 0px 0px 10px 2px #0ff;
+        }
+        &:nth-child(3) {
+          bottom: 75%;
+          left: 74%;
+          box-shadow: 0px 0px 10px 2px #0ff;
+        }
+        &:nth-child(4), &:nth-child(5), &:nth-child(6) {opacity: 0;}
+      }
     }
   }
   
@@ -152,6 +221,30 @@
     .flames {
       background-image: url('./player/flames-yellow.png');
       margin: -28px -15px;
+    }
+    
+    .beam {
+      .light {
+        background-color: #EAC352;
+        box-shadow: 0px 0px 10px 2px #EAC352;
+        &:nth-child(3) {
+          bottom: 60%;
+          left: 66%;
+        }
+        &:nth-child(4) {
+          bottom: 60%;
+          left: 34%;
+        }
+        &:nth-child(5) {
+          bottom: 55%;
+          left: 23%;
+        }
+        &:nth-child(6) {
+          bottom: 55%;
+          left: 77%;
+        }
+        &:nth-child(1), &:nth-child(2) {opacity: 0;}
+      }
     }
   }
 }
