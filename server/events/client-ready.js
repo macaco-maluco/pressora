@@ -14,6 +14,7 @@ class GameLoop {
   constructor (socket, match) {
     this.socket = socket
     this.match = match
+    this.waitDuration = 6000
     this.turnDuration = 30
     this.turnCountdownDuration = 3
   }
@@ -21,14 +22,14 @@ class GameLoop {
   start () {
     this.match.incTurn()
     if (this.match.isFinished()) {
-      this.sendEndMatch()
+      this.wait().then(() => this.sendEndMatch())
     } else {
       this.scheduleTurnCountdown(this.turnCountdownDuration, () => {
         this.run().then(() => {
           if (this.match.isFinished()) {
-            this.sendEndMatch()
+            this.wait().then(() => this.sendEndMatch())
           } else {
-            this.scheduleWaitRender().then(() => this.start())
+            this.wait().then(() => this.start())
           }
         })
       })
@@ -81,9 +82,9 @@ class GameLoop {
     }, 1000)
   }
 
-  scheduleWaitRender () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(resolve, 6000)
+  wait () {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, this.waitDuration)
     })
   }
 
