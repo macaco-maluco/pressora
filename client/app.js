@@ -20,6 +20,7 @@ export default React.createClass({
     gameFinished: React.PropTypes.bool,
     timeToWait: React.PropTypes.number,
     timeLeft: React.PropTypes.number,
+    matchId: React.PropTypes.string,
     playerId: React.PropTypes.string,
     winnerId: React.PropTypes.string
   },
@@ -34,6 +35,11 @@ export default React.createClass({
            onTouchStart={this.handleTouch}
            onTouchMove={this.handleTouch}
            onMouseMove={this.handleTouch}>
+
+        {
+          this.props.matchId &&
+          <div className='match-id'>{this.props.matchId}</div>
+        }
 
         <GameMessage gameState={this.props.gameState}
                      gameFinished={this.props.gameFinished}

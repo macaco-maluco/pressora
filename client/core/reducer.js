@@ -36,7 +36,7 @@ export default function (state = initialState, action) {
       return Object.assign({}, state, { actions })
 
     case 'LOAD_MAP':
-      return Object.assign({}, state, { map: action.map, playerId: action.playerId })
+      return Object.assign({}, state, { map: action.map, matchId: action.matchId, playerId: action.playerId })
 
     case 'LOAD_PLAYERS':
       players = action.players

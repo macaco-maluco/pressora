@@ -5,6 +5,7 @@ export default {
   gameFinished: false,
   timeToWait: null,
   timeLeft: 0,
+  matchId: null,
   playerId: null,
   winnerId: null,
 
