@@ -26,7 +26,7 @@
     text-align: right;
   }
 
-  .flames, .beam, .particle {
+  .flames, .beam, .particle, .recharge {
     opacity: 0;
   }
 
@@ -72,7 +72,6 @@
         }
       }
     }
-
   }
 
   &.player-dying {
@@ -83,6 +82,12 @@
     animation: damage ease-in-out .6s;
   }
   
+  &.player-recharge {
+    .recharge {
+      opacity: 1;
+    }
+  }
+
   .flames {
     width: 30px;
     height: 133px;
@@ -110,6 +115,17 @@
     }
   }
 
+  .recharge {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    margin: -17px;
+    background: url('./recharge.svg') no-repeat 0 0;
+  }
+
   &.player-1 {
     .player-body {
       background-image: url('./player/player-green.png');
@@ -118,6 +134,7 @@
     .flames {
       background-image: url('./player/flames-green.png');
     }
+
     .beam {
       .light {
         background-color: #2AF19F;
@@ -148,7 +165,7 @@
         }
       }
     }
-    
+
     .blast {
       .particle {
         background-color: #2AF19F;
@@ -200,7 +217,7 @@
       }
     }
   }
-  
+
   &.player-3 {
     .player-body {
       background-image: url('./player/player-blue.png');

@@ -26,6 +26,7 @@ export default React.createClass({
           <div className='particle'/>
         </div>
       </div>
+      <div className="recharge"/>
 
       <BatteryIndicator battery={this.props.player.battery}/>
       <LifeIndicator life={this.props.player.life}/>
