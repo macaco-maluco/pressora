@@ -16,7 +16,6 @@ export class Match {
     this.players = []
     this.players_ready = {}
     this.created_at = Date.now()
-    this.join_until = new Date(this.created_at + (30 * 1000)) // 30s
     this.latest_interaction = Date.now()
     this.maxIdleTime = 10 * 60 * 1000 // 10m
     this.status = WAITING
@@ -62,6 +61,9 @@ export class Match {
   }
 
   addPlayer (player) {
+    if (!this.players || this.players.length === 0) {
+      this.join_until = new Date.now() + (30 * 1000) // 30s
+    }
     if (!this.players.find(p => p.id === player.id)) {
       this.logInteraction()
       this.players.push(player)

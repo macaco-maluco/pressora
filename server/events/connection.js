@@ -16,7 +16,7 @@ module.exports = function (context, socket) {
 function schedulePrepareMatch (socket, match) {
   if (scheduledMatches[match.id]) {
     if (match.isFull()) {
-      console.log(`maximun amount of players reached, starting match ${match.id} now`)
+      console.log(`maximum amount of players reached, starting match ${match.id} now`)
       clearTimeout(scheduledMatches[match.id])
       prepareMatch(socket, match)
       return false
@@ -28,11 +28,10 @@ function schedulePrepareMatch (socket, match) {
   var waitTime = match.join_until - Date.now()
 
   if (waitTime > 0) {
-    console.log(`minimun amount of players reached for match ${match.id}, waiting ${waitTime}ms to start`)
+    console.log(`minimum amount of players reached for match ${match.id}, waiting ${waitTime}ms to start`)
     scheduledMatches[match.id] = setTimeout(() => prepareMatch(socket, match), waitTime)
     return true
   }
-
   clearTimeout(scheduledMatches[match.id])
   prepareMatch(socket, match)
   return false
