@@ -1,6 +1,8 @@
 import {Match, Player} from '../domain/domain'
-var matchQueue = require('../match-queue')
+import matchQueue from '../match-queue'
+
 var guests = 0
+var socketUrl = process.env.NODE_ENV === 'production' ? '/' : ':3000/'
 
 module.exports = function gameAction (req, res) {
   var match = findMatch(req.session.matchId)
@@ -14,7 +16,7 @@ module.exports = function gameAction (req, res) {
   }
   res.json({
     map: match.map,
-    socket_url: process.env.NODE_ENV === 'production' ? '/' : ':3000/'
+    socket_url: socketUrl
   })
 }
 

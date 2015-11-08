@@ -10,17 +10,20 @@ export class Match {
     this.players = []
     this.players_ready = {}
     this.created_at = Date.now()
+    this.join_until = new Date(this.created_at + (30 * 1000)) // 1min
     this.latest_interaction = Date.now()
     this.status = 'waiting'
     this.turn_command_buffer = {}
   }
 
   isReadyToLoad () {
-    return this.players.length === this.map.max_players
+    return this.players.length >= this.map.min_players &&
+           this.players.length <= this.map.max_players
   }
 
   isReadyToStart () {
-    return Object.keys(this.players_ready).length === this.map.max_players && this.status === 'waiting'
+    return Object.keys(this.players_ready).length === this.players.length &&
+           this.status === 'waiting'
   }
 
   isFinished () {
@@ -28,26 +31,32 @@ export class Match {
   }
 
   addPlayer (player) {
+    this.logInteraction()
     this.players.push(player)
   }
 
   acceptCommands () {
+    this.logInteraction()
     this.status = 'accepting-commands'
   }
 
   blockCommands () {
+    this.logInteraction()
     this.status = 'blocking-commands'
   }
 
   clearCommands () {
+    this.logInteraction()
     this.players.forEach(player => this.turn_command_buffer[player.id] = new Array(5))
   }
 
   clearPlayersTransientState () {
+    this.logInteraction()
     this.players.forEach(player => player.transient = {})
   }
 
   positionPlayers () {
+    this.logInteraction()
     var horizontalLength = this.map.coords[0].length - 1
     var verticalLength = this.map.coords.length - 1
     var playerPositions = [{x: 0, y: 0, facing: 'S'},
@@ -58,6 +67,7 @@ export class Match {
   }
 
   inputCommand (playerId, slot, command) {
+    this.logInteraction()
     this.turn_command_buffer[playerId][slot] = new Command(slot, command, playerId)
   }
 
@@ -66,6 +76,7 @@ export class Match {
   }
 
   executeSlotCommands (slot) {
+    this.logInteraction()
     Object.keys(this.turn_command_buffer)
       .map((id) => this.turn_command_buffer[id][slot])
       .filter(command => command)
@@ -75,6 +86,7 @@ export class Match {
 
   applyCommand (command) {
     try {
+      this.logInteraction()
       var player = this.players.find(function (player) { return player.id === command.player_id })
       if (player.alive) {
         require(`../commands/${command.action}`)(this, player)
@@ -83,6 +95,10 @@ export class Match {
     } catch (e) {
       console.error(`while applying command ${command.action}: ${e.message}`)
     }
+  }
+
+  logInteraction () {
+    this.latest_interaction = Date.now()
   }
 }
 

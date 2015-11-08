@@ -22,6 +22,9 @@
   socket.on('end-match', function (data) {
     console.log('end-match', data);
   });
+  socket.on('error', function (e) {
+    console.log('error', e);
+  });
 </script>
 
 <button onclick="javascript:socket.emit('client-ready');">client ready</button>
