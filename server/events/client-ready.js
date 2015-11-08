@@ -58,7 +58,7 @@ class GameLoop {
 
   scheduleTick (timeLeft, callback) {
     setTimeout(() => {
-      this.emit('tick', { time_left: timeLeft })
+      this.emit('tick', { time_left: timeLeft, players: this.match.players })
       if (timeLeft > 0) this.scheduleTick(timeLeft - 1, callback)
       else callback()
     }, 1000)
