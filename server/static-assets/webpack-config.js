@@ -8,11 +8,9 @@ const projectPath = join(__dirname, '../../')
 const watch = process.env.NODE_ENV !== 'production'
 
 
-const plugins = []
+const plugins = [new HtmlWebpackPlugin({ template: 'client/index.html', inject: true })]
 if (watch) {
-  plugins.push(
-    new HtmlWebpackPlugin({ template: 'client/index.html' }),
-    new HotModuleReplacementPlugin())
+  plugins.push(new HotModuleReplacementPlugin())
 } else {
   plugins.push(new optimize.UglifyJsPlugin())
 }
@@ -42,7 +40,7 @@ export default {
 
   output: {
     path: path.join(projectPath, 'dist'),
-    filename: 'index.js'
+    filename: 'index-[hash].js'
   },
 
   plugins,
