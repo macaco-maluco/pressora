@@ -2,7 +2,13 @@ var Maps = require('../maps')
 var Uuid = require('uuid')
 var Directions = require('./directions')
 
+const WAITING = 'waiting'
+const FINISHED = 'finished'
+const ACCEPTING_COMMANDS = 'accepting-commands'
+const BLOCKING_COMMANDS = 'blocking-commands'
+
 export class Match {
+
   constructor () {
     this.id = Uuid.v4()
     this.map = Maps[Math.floor(Math.random()) % Maps.length]
@@ -13,8 +19,9 @@ export class Match {
     this.join_until = new Date(this.created_at + (30 * 1000)) // 1m
     this.latest_interaction = Date.now()
     this.maxIdleTime = 10 * 60 * 1000 // 10m
-    this.status = 'waiting'
+    this.status = WAITING
     this.turn_command_buffer = {}
+    this.max_turns = 20
   }
 
   isReadyToLoad () {
@@ -24,11 +31,26 @@ export class Match {
 
   isReadyToStart () {
     return Object.keys(this.players_ready).length === this.players.length &&
-           this.status === 'waiting'
+           this.status === WAITING
+  }
+
+  incTurn () {
+    if (++this.turn >= this.max_turns) this.status = FINISHED
+  }
+
+  checkEndGame() {
+    var players_alive = this.players.filter(player => player.alive)
+    if (players_alive.length() <= 1) this.status = FINISHED
+    if (players_alive.length() === 1) this.winner = players_alive.pop()
+    return this.status === FINISHED
   }
 
   isFinished () {
-    return false
+    return this.status === FINISHED
+  }
+
+  hasNoMoreThanOnePlayerAlive () {
+    return this.players.filter(player => player.alive).length() <= 1
   }
 
   isExpired () {
@@ -42,12 +64,12 @@ export class Match {
 
   acceptCommands () {
     this.logInteraction()
-    this.status = 'accepting-commands'
+    this.status = ACCEPTING_COMMANDS
   }
 
   blockCommands () {
     this.logInteraction()
-    this.status = 'blocking-commands'
+    this.status = BLOCKING_COMMANDS
   }
 
   clearCommands () {
@@ -77,7 +99,7 @@ export class Match {
   }
 
   isAcceptingCommands () {
-    return this.status === 'accepting-commands'
+    return this.status === ACCEPTING_COMMANDS
   }
 
   executeSlotCommands (slot) {

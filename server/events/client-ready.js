@@ -18,14 +18,18 @@ class GameLoop {
   }
 
   start () {
-    this.match.turn++
-    this.run().then(() => {
-      if (this.match.isFinished()) {
-        this.emit('end-match')
-      } else {
-        this.start()
-      }
-    })
+    this.match.incTurn()
+    if (this.match.isFinished()) {
+      this.emit('end-match', { winner: this.match.winner })
+    } else {
+      this.run().then(() => {
+        if (this.match.isFinished()) {
+          this.emit('end-match', { winner: this.match.winner })
+        } else {
+          this.start()
+        }
+      })
+    }
   }
 
   run () {
@@ -48,6 +52,7 @@ class GameLoop {
       this.match.executeSlotCommands(i)
       this.emit('render', {players: this.match.players})
       this.match.clearPlayersTransientState()
+      if (this.match.checkEndGame()) break
     }
   }
 
