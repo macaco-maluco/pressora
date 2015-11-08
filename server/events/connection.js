@@ -14,11 +14,11 @@ module.exports = function (context, socket) {
 
 function schedulePrepareMatch (socket, match) {
   if (scheduledMatches[match.id]) return
-  var waitTime = (match.join_until - Date.now()) / 1000
+  var waitTime = match.join_until - Date.now()
 
   if (waitTime > 0) {
     scheduledMatches[match.id] = true
-    console.log(`minimun amount of players reached for match ${match.id}, waiting ${waitTime}s to start`)
+    console.log(`minimun amount of players reached for match ${match.id}, waiting ${waitTime}ms to start`)
     setTimeout(() => prepareMatch(socket, match), waitTime)
   } else {
     prepareMatch(socket, match)

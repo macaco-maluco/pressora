@@ -88,10 +88,12 @@ export class Match {
     this.logInteraction()
     var horizontalLength = this.map.coords[0].length - 1
     var verticalLength = this.map.coords.length - 1
-    var playerPositions = [{x: 0, y: 0, facing: 'S'},
-                           {x: horizontalLength, y: verticalLength, facing: 'N'},
-                           {x: horizontalLength, y: 0, facing: 'S'},
-                           {x: 0, y: verticalLength, facing: 'N'}]
+    var playerPositions = [
+      {x: 0, y: 0, facing: 'S'},
+      {x: horizontalLength, y: verticalLength, facing: 'N'},
+      {x: horizontalLength, y: 0, facing: 'S'},
+      {x: 0, y: verticalLength, facing: 'N'}
+    ]
     this.players.forEach(player => player.pos = playerPositions.shift())
   }
 
