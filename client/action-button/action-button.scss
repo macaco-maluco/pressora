@@ -8,9 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
-  padding: 5px;
   outline: none;
-
 
   &.current {
     background-color: #80DDCB;
@@ -21,7 +19,7 @@
   }
 
   &.editting {
-    background-color: rgba(81, 59, 108, 0.6);;
+    background-color: rgba(81, 59, 108, 0.6);
   }
 
   &.action-button-forward {
@@ -53,7 +51,14 @@
   }
 
   &.action-button-empty {
-    background-image: url('./action-button/action-button-empty.png');
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    border: 1px solid #777;
+
+    &.editting {
+      background-color: rgba(81, 59, 108, 0.6);
+    }
   }
 
   &.action-button-recharge {
