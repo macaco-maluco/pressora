@@ -10,16 +10,22 @@ export default React.createClass({
   },
 
   render: function () {
+    const transient = this.props.player.transient
+    const beamSize = (transient &&
+                     transient.beam &&
+                     transient.beam.path &&
+                     transient.beam.path.length || 0) * 100
+
     return <div className={this.className()}>
       <div className='player-body'>
         <div className='flames'/>
         <div className='beam'>
-          <div className='light'/>
-          <div className='light'/>
-          <div className='light'/>
-          <div className='light'/>
-          <div className='light'/>
-          <div className='light'/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
+          <div className='light' style={{ height: `${beamSize}%` }}/>
         </div>
         <div className='blast'>
           <div className='particle'/>
