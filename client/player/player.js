@@ -28,6 +28,7 @@ export default React.createClass({
         </div>
       </div>
       <div className="recharge"/>
+      <div className="shild"/>
 
       <BatteryIndicator battery={this.props.player.battery}/>
       <LifeIndicator life={this.props.player.life}/>
