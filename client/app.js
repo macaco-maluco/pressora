@@ -23,19 +23,6 @@ export default React.createClass({
     winnerId: React.PropTypes.string
   },
 
-  componentDidMount: function () {
-    // setTimeout(() => {
-    //   this.props.movePlayer(0, { x: 1, y: 2, facing: 'N' })
-    //   const beam = document.getElementById('blast-sound')
-    //   beam.play()
-    // }, 10000)
-    // // setTimeout(() =>
-    // //   this.props.movePlayer(1, { x: 2, y: 6, facing: 'E' }
-    // //   const blast = document.getElementById('blast-sound');
-    // //   blast.play()
-    // // ), 1500)
-  },
-
   handleTouch: function (e) {
     e.preventDefault()
   },
