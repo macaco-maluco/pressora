@@ -22,9 +22,21 @@ module.exports = function gameAction (req, res) {
 }
 
 function findMatch (id) {
-  if (id) return matchQueue.find(match => match.id === id && match.status !== 'finished' && !match.isExpired())
+  if (id) {
+    const match = matchQueue.find(match => {
+      return match.id === id &&
+             match.status !== 'finished' &&
+             !match.isExpired()
+    })
+    if (match) return match
+  }
+
   return matchQueue
-    .filter(match => match.players.length < match.map.max_players && match.status === 'waiting' && !match.isExpired())
+    .filter(match => {
+      return match.players.length < match.map.max_players &&
+             match.status === 'waiting' &&
+             !match.isExpired()
+    })
     .pop()
 }
 

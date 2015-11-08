@@ -53,7 +53,8 @@ export class Match {
   }
 
   isExpired () {
-    return Date.now() - this.latest_interaction > this.maxIdleTime
+    return Date.now() - this.latest_interaction > this.maxIdleTime ||
+           this.isFinished()
   }
 
   addPlayer (player) {
