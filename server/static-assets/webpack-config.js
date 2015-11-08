@@ -1,11 +1,27 @@
 import path from 'path'
-import { HotModuleReplacementPlugin } from 'webpack'
+import { HotModuleReplacementPlugin, optimize } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import reactTransform from 'babel-plugin-react-transform'
 import { join } from 'path'
 
 const projectPath = join(__dirname, '../../')
-const watch = true
+const watch = process.env.NODE_ENV !== 'production'
+
+
+const plugins = []
+if (watch) {
+  plugins.push(
+    new HtmlWebpackPlugin({ template: 'client/index.html' }),
+    new HotModuleReplacementPlugin())
+} else {
+  plugins.push(new optimize.UglifyJsPlugin())
+}
+
+
+const entry = ['./index']
+if (watch) {
+  entry.push('webpack-hot-middleware/client')
+}
 
 
 export default {
@@ -16,10 +32,7 @@ export default {
     failOnError: !watch
   },
 
-  entry: [
-    'webpack-hot-middleware/client',
-    './index'
-  ],
+  entry,
 
   resolve: {
     root: [
@@ -32,10 +45,7 @@ export default {
     filename: 'index.js'
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({ template: 'client/index.html' }),
-    new HotModuleReplacementPlugin()
-  ],
+  plugins,
 
   babel: {
     optional: ['runtime'],

@@ -1,3 +1,5 @@
+import staticAssets from './static-assets'
+
 var express = require('express')
 var http = require('http')
 var app = express()
@@ -7,17 +9,22 @@ var session = require('express-session')({
   resave: false,
   saveUninitialized: true
 })
+
 var sharedsession = require('express-socket.io-session')
 var SocketIO = require('socket.io')
 var io = new SocketIO(server, { path: '/game-socket' })
 
-// app.use(express.static('./client'))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./dist'))
+} else {
+  staticAssets(app)
+}
 
 app.use(session)
 io.use(sharedsession(session))
 
 require('./maps')
-require('./static-assets')(app)
 require('./routes')(app, io)
 
 export default server

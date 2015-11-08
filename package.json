@@ -8,6 +8,7 @@
     "start": "node bin/server.js",
     "test": "standard",
     "dev": "supervisor --watch server bin/server.js",
+    "build": "node bin/build.js",
     "deploy": "modulus deploy"
   },
   "repository": {
