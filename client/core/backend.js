@@ -3,6 +3,7 @@ import store from './store'
 
 let renderQueue = []
 let socket
+let reloading = false
 
 function performRender (data) {
   return new Promise(function (resolve) {
@@ -62,6 +63,12 @@ axios.get(`/api/game${window.location.search}`)
       console.log('wait-for-players', data)
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'wait-for-players' })
     })
+    socket.on('match-expired', function (data) {
+      console.log('match-expired', data)
+      reloading = true
+      socket.disconnect()
+      window.location.reload()
+    })
     socket.on('prepare-match', function (data) {
       console.log('prepare-match', data)
       store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
@@ -114,7 +121,7 @@ axios.get(`/api/game${window.location.search}`)
     })
     socket.on('disconnect', function () {
       console.log('disconnect', arguments)
-      store.dispatch({ type: 'SET_GAME_STATE', gameState: 'disconnect' })
+      if (!reloading) store.dispatch({ type: 'SET_GAME_STATE', gameState: 'disconnect' })
     })
   })
 

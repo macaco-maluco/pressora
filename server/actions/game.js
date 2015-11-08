@@ -7,16 +7,12 @@ var matchQueueWatchdogTime = 5 * 60 * 1000 // 5m
 
 module.exports = function gameAction (req, res) {
   var match = findMatch(req.session.matchId)
-
   if (match) {
     var loggedPlayer = findPlayer(match, req.session.playerId)
-    if (loggedPlayer && !loggedPlayer.alive) {
-      match = null
-    }
+    if (loggedPlayer && !loggedPlayer.alive) match = null
   }
 
   if (!match) matchQueue.push(match = new Match())
-
   req.session.matchId = match.id
 
   var player = createPlayer(req)
