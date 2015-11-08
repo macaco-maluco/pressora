@@ -5,24 +5,37 @@ module.exports = function (context, socket) {
   console.log(`player ${context.session.playerId} connected to match ${context.session.matchId}`)
 
   if (context.match.isReadyToLoad()) {
-    schedulePrepareMatch(socket, context.match)
-    socket.emit('wait-for-players')
+    if (schedulePrepareMatch(socket, context.match)) {
+      socket.emit('wait-for-players')
+    }
   } else {
     socket.emit('wait-for-players')
   }
 }
 
 function schedulePrepareMatch (socket, match) {
-  if (scheduledMatches[match.id]) return
+  if (scheduledMatches[match.id]) {
+    if (match.isFull()) {
+      console.log(`maximun amount of players reached, starting match ${match.id} now`)
+      clearTimeout(scheduledMatches[match.id])
+      prepareMatch(socket, match)
+      return false
+    }
+
+    return true
+  }
+
   var waitTime = match.join_until - Date.now()
 
   if (waitTime > 0) {
-    scheduledMatches[match.id] = true
     console.log(`minimun amount of players reached for match ${match.id}, waiting ${waitTime}ms to start`)
-    setTimeout(() => prepareMatch(socket, match), waitTime)
-  } else {
-    prepareMatch(socket, match)
+    scheduledMatches[match.id] = setTimeout(() => prepareMatch(socket, match), waitTime)
+    return true
   }
+
+  clearTimeout(scheduledMatches[match.id])
+  prepareMatch(socket, match)
+  return false
 }
 
 function prepareMatch (socket, match) {

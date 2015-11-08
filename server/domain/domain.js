@@ -29,6 +29,10 @@ export class Match {
            this.players.length <= this.map.max_players
   }
 
+  isFull () {
+    return this.players.length === this.map.max_players
+  }
+
   isReadyToStart () {
     return Object.keys(this.players_ready).length === this.players.length &&
            this.status === WAITING
