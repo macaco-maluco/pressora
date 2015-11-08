@@ -98,10 +98,7 @@
       top: 0%;
       left: 0%;
       position: absolute;
-      border:1px solid #0dd;
-      background-color: #0dd;
       border-radius: 50%;
-      box-shadow: 0px 0px 10px 5px #0ff;
     }
   }
 
@@ -143,6 +140,13 @@
         }
       }
     }
+    
+    .blast {
+      .particle {
+        background-color: #2AF19F;
+        box-shadow: 0px 0px 10px 5px #2AF19F;
+      }
+    }
   }
 
   &.player-2 {
@@ -153,7 +157,7 @@
     .flames {
       background-image: url('./player/flames-red.png');
     }
-    
+
     .beam {
       .light {
         background-color: #D9555D;
@@ -178,6 +182,13 @@
           box-shadow: 0px 0px 10px 5px #D9555D;
         }
         &:nth-child(5), &:nth-child(6) {opacity: 0;}
+      }
+    }
+
+    .blast {
+      .particle {
+        background-color: #D9555D;
+        box-shadow: 0px 0px 10px 5px #D9555D;
       }
     }
   }
@@ -209,6 +220,13 @@
           box-shadow: 0px 0px 10px 2px #0ff;
         }
         &:nth-child(4), &:nth-child(5), &:nth-child(6) {opacity: 0;}
+      }
+    }
+
+    .blast {
+      .particle {
+        background-color: #0ff;
+        box-shadow: 0px 0px 10px 5px #0ff;
       }
     }
   }
@@ -244,6 +262,13 @@
           left: 77%;
         }
         &:nth-child(1), &:nth-child(2) {opacity: 0;}
+      }
+    }
+
+    .blast {
+      .particle {
+        background-color: #EAC352;
+        box-shadow: 0px 0px 10px 5px #EAC352;
       }
     }
   }
