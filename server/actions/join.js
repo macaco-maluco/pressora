@@ -28,5 +28,6 @@ module.exports = function (io) {
     require('../events/connection')(context, socket)
     socket.on('client-ready', require('../events/client-ready')(context, socket))
     socket.on('command', require('../events/command')(context, socket))
+    socket.on('disconnect', require('../events/disconnect')(context, socket))
   })
 }

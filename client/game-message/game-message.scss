@@ -4,6 +4,7 @@
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 1;
 
   &.invisible {
     display: none;
@@ -15,9 +16,32 @@
     transform: translate3d(0, -50%, 0);
     background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
     color: #f1f1f1;
     position: absolute;
     padding: 10vw 0;
     font-size: 2vw;
+
+    &.error,
+    &.no-matches-found,
+    &.disconnect {
+      background-color: rgba(156, 43, 46, 0.6);
+    }
+
+    span.wait-for-players:after {
+      content: " (-_-) zzz"
+    }
+
+    span.error:after {
+      content: " (;¬_¬)"
+    }
+
+    span.no-matches-found:after {
+      content: " ¯\_(ツ)_/¯"
+    }
+
+    span.disconnect:after {
+      content: " (︶︹︺)"
+    }
   }
 }

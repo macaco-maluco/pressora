@@ -10,8 +10,8 @@ export default React.createClass({
     var message = this.getMessage()
     var visible = message ? 'visible' : 'invisible'
     return <div className={`game-message ${visible}`}>
-      <div className='message'>
-        <span>{message}</span>
+      <div className={`message ${this.props.gameState}`}>
+        <span className={this.props.gameState}>{message}</span>
       </div>
     </div>
   },
@@ -24,6 +24,12 @@ export default React.createClass({
         return 'Waiting for players'
       case 'turn-starts-in':
         return `Turn starts in ${this.props.timeToWait} seconds`
+      case 'no-matches-found':
+        return 'No matches found'
+      case 'error':
+        return 'Some error occurred, try to load the game again :/'
+      case 'disconnect':
+        return 'You were disconnected from the game server, try again'
     }
   }
 })

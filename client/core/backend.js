@@ -47,12 +47,19 @@ axios.get('/game')
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'turn-starts-in' })
       store.dispatch({ type: 'WAIT_FOR', timeToWait: data.time_to_start_turn })
     })
-    socket.on('error', function () {
-      console.error(arguments)
-      store.dispatch({ type: 'SET_GAME_STATE', gameState: 'error' })
+    socket.on('error', function (err) {
+      if (/no matches found/.test(err)) {
+        store.dispatch({ type: 'SET_GAME_STATE', gameState: 'no-matches-found' })
+      } else {
+        console.log('error', arguments)
+        store.dispatch({ type: 'SET_GAME_STATE', gameState: 'error' })
+      }
+    })
+    socket.on('disconnect', function () {
+      console.log('disconnect', arguments)
+      store.dispatch({ type: 'SET_GAME_STATE', gameState: 'disconnect' })
     })
   })
-
 
 export default {
   sendCommand (command) {
