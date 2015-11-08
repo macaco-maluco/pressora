@@ -58,8 +58,10 @@ export class Match {
   }
 
   addPlayer (player) {
-    this.logInteraction()
-    this.players.push(player)
+    if (!this.players.find(p => p.id === player.id)) {
+      this.logInteraction()
+      this.players.push(player)
+    }
   }
 
   acceptCommands () {
@@ -130,8 +132,8 @@ export class Match {
 }
 
 export class Player {
-  constructor (name) {
-    this.id = Uuid.v4()
+  constructor (name, id = Uuid.v4()) {
+    this.id = id
     this.name = name
     this.life = 3
     this.battery = 100

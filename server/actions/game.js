@@ -7,17 +7,19 @@ var matchQueueWatchdogTime = 5 * 60 * 1000 // 5m
 
 module.exports = function gameAction (req, res) {
   var match = findMatch(req.session.matchId)
-  if (!match) matchQueue.push(match = new Match())
-
-  if (!req.session.playerId) {
-    var player = new Player(`Guest ${++guests}`)
-    match.addPlayer(player)
-    req.session.playerId = player.id
+  if (!match) {
+    matchQueue.push(match = new Match())
     req.session.matchId = match.id
   }
+
+  var player = createPlayer(req)
+  match.addPlayer(player)
+
   res.json({
-    map: match.map,
-    socket_url: socketUrl
+    socket_url: socketUrl,
+    match_id: match.id,
+    player_id: player.id,
+    map: match.map
   })
 }
 
@@ -28,6 +30,23 @@ function findMatch (id) {
     .pop()
 }
 
+function createPlayer (req) {
+  req.session.playerName = getPlayerName(req)
+
+  if (req.session.playerId) {
+    return new Player(req.session.playerName, req.session.playerId)
+  }
+
+  var player = new Player(req.session.playerName)
+  req.session.playerId = player.id
+  return player
+}
+
+function getPlayerName (req) {
+  return req.session.playerName || `Guest ${++guests}`
+}
+
+// match queue watchdog
 setInterval(() => {
   var oldSize = matchQueue.length
   matchQueue
