@@ -45,6 +45,9 @@ export default React.createClass({
         this.props.map && <GameMap map={this.props.map}>
           {
             this.props.players.map((player, index) => {
+              const hasPosition = typeof player.pos !== 'undefined'
+              if (!hasPosition) { return }
+
               return <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
                 <Player player={player} index={index}/>
               </GameMapNode>
