@@ -8,7 +8,11 @@ const projectPath = join(__dirname, '../../')
 const watch = process.env.NODE_ENV !== 'production'
 
 
-const plugins = [new HtmlWebpackPlugin({ template: 'client/index.html', inject: true })]
+const plugins = [
+  new HtmlWebpackPlugin({ template: 'client/template.html', filename: 'index.html', chunks: ['index'], inject: true }),
+  new HtmlWebpackPlugin({ template: 'client/template.html', filename: 'game.html', chunks: ['game'], inject: true })
+]
+
 if (watch) {
   plugins.push(new HotModuleReplacementPlugin())
 } else {
@@ -16,9 +20,12 @@ if (watch) {
 }
 
 
-const entry = ['./index']
+const entry = {
+  index: ['./index'],
+  game: ['./game']
+}
 if (watch) {
-  entry.push('webpack-hot-middleware/client')
+  Object.keys(entry).forEach(e => entry[e].push('webpack-hot-middleware/client'))
 }
 
 
@@ -40,7 +47,8 @@ export default {
 
   output: {
     path: path.join(projectPath, 'dist'),
-    filename: 'index-[hash].js'
+    filename: '[name]-[hash].js',
+    chunkFilename: '[id].bundle.js'
   },
 
   plugins,

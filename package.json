@@ -8,7 +8,7 @@
     "start": "node bin/server.js",
     "test": "standard",
     "dev": "supervisor --watch server bin/server.js",
-    "build": "node bin/build.js",
+    "build": "rm -rf dist/ && node bin/build.js",
     "deploy": "NODE_ENV=production npm run build && modulus deploy"
   },
   "repository": {
