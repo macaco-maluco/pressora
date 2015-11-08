@@ -3,7 +3,7 @@ import store from './store'
 
 let socket
 
-axios.get('/api/game')
+axios.get(`/api/game${window.location.search}`)
   .then(function ({ data }) {
     store.dispatch({ type: 'LOAD_MAP', map: data.map, playerId: data.player_id })
     store.dispatch({ type: 'SET_GAME_STATE', gameState: 'match-acquired' })

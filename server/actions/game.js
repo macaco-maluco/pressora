@@ -41,7 +41,9 @@ function createPlayer (req) {
 }
 
 function getPlayerName (req) {
-  return req.session.playerName || `Guest ${++guests}`
+  var playerName = req.query.playerName
+  if (!playerName || playerName.length === 0) playerName = null
+  return req.session.playerName || playerName || `Guest ${++guests}`
 }
 
 // match queue watchdog
