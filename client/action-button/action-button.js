@@ -28,8 +28,8 @@ export default React.createClass({
 const titles = {
   'forward': 'Move the ship forward',
   'backward': 'Move the ship backward',
-  'spin-left': 'Turn the ship right',
-  'spin-right': 'Turn the ship left',
+  'spin-left': 'Turn the ship left',
+  'spin-right': 'Turn the ship right',
   'beam': 'Fire a beam forward',
   'blast': 'Trigger a blast arround the ship',
   'shield': 'Raise a shield to defend against an attack',
