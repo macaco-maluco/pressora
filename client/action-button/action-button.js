@@ -13,8 +13,26 @@ export default React.createClass({
 
     return <button onTouchStart={this.props.onClick}
                    onClick={this.props.onClick}
+                   title={this.getTitle()}
                    className={`action-button action-button-${this.props.action}
                    ${this.props.status}`}
                    dangerouslySetInnerHTML={html}/>
+  },
+
+  getTitle: function () {
+    const title = titles[this.props.action]
+    return title || ''
   }
 })
+
+const titles = {
+  'forward': 'Move the ship forward',
+  'backward': 'Move the ship backward',
+  'spin-left': 'Turn the ship right',
+  'spin-right': 'Turn the ship left',
+  'beam': 'Fire a beam forward',
+  'blast': 'Trigger a blast arround the ship',
+  'shield': 'Raise a shield to defend against an attack',
+  'recharge': 'Recharge the ship battery',
+  'empty': 'Click to select an action'
+}
