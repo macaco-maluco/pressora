@@ -7,7 +7,7 @@ module.exports = function (match, player) {
     Commons.findSurroundings(player.pos).forEach(function (coord) {
       var enemy = Commons.findPlayer(match, coord)
       if (enemy && enemy.takeHit()) {
-        enemiesDamaged.push(enemy)
+        enemiesDamaged.push(enemy.id)
       }
     })
     player.transient.blast = { damages_players: enemiesDamaged }

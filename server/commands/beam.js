@@ -14,7 +14,7 @@ module.exports = function (match, player) {
       var enemy = Commons.findPlayer(match, destination.coord)
       if (enemy) {
         enemyHit = true
-        if (enemy.takeHit()) enemyDamaged = enemy
+        if (enemy.takeHit()) enemyDamaged = enemy.id
       }
       destination = Commons.findDestination(match.map, destination.coord, player.pos.facing)
       beamPath.push(destination.coord)
