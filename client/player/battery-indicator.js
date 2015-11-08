@@ -2,7 +2,7 @@ import React from 'react'
 
 export default React.createClass({
   propTypes: {
-    battery: React.PropTypes.integer
+    battery: React.PropTypes.number
   },
 
   render: function () {

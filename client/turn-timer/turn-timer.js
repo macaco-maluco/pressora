@@ -2,7 +2,7 @@ import React from 'react'
 
 export default React.createClass({
   propTypes: {
-    timeLeft: React.PropTypes.integer
+    timeLeft: React.PropTypes.number
   },
 
   render: function () {

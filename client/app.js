@@ -18,7 +18,7 @@ export default React.createClass({
     movePlayer: React.PropTypes.func,
     gameState: React.PropTypes.string,
     timeToWait: React.PropTypes.number,
-    timeLeft: React.PropTypes.timeLeft
+    timeLeft: React.PropTypes.number
   },
 
   componentDidMount: function () {

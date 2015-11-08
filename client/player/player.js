@@ -7,7 +7,7 @@ import player1Beam from './sounds/player-1-beam.mp3'
 export default React.createClass({
   propTypes: {
     player: React.PropTypes.object,
-    index: React.PropTypes.integer
+    index: React.PropTypes.number
   },
 
   render: function () {
