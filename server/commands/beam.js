@@ -6,10 +6,11 @@ module.exports = function (match, player) {
     var destination = Commons.findDestination(match.map, player.pos, player.pos.facing)
     var beamPath = [destination.coord]
     var enemyHit = false
-    var enemyDamaged = undefined
-    while (!Commons.isWall(match.map, destination.terrain_type)
-           && !Commons.isOutsideMap(destination)
-           && !enemyHit) {
+    var enemyDamaged
+
+    while (!Commons.isWall(match.map, destination.terrain_type) &&
+           !Commons.isOutsideMap(destination) &&
+           !enemyHit) {
       var enemy = Commons.findPlayer(match, destination.coord)
       if (enemy) {
         enemyHit = true
@@ -18,6 +19,7 @@ module.exports = function (match, player) {
       destination = Commons.findDestination(match.map, destination.coord, player.pos.facing)
       beamPath.push(destination.coord)
     }
+
     player.transient.beam = { path: beamPath, damages_player: enemyDamaged }
   }
 }

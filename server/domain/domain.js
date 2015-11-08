@@ -105,9 +105,10 @@ export class Match {
 
   executeSlotCommands (slot) {
     this.logInteraction()
+    console.log(`[${this.id}] executing commands of slot ${slot}`)
     Object.keys(this.turn_command_buffer)
-      .map((id) => this.turn_command_buffer[id][slot])
-      .filter(command => command)
+      .map(playerId => this.turn_command_buffer[playerId][slot])
+      .filter(command => !!command)
       .sort((a, b) => a.created_at - b.created_at)
       .forEach(command => this.applyCommand(command))
   }
@@ -119,6 +120,8 @@ export class Match {
       if (player.alive) {
         require(`../commands/${command.action}`)(this, player)
         player.transient.action = player.alive ? command.action : 'die'
+      } else {
+        console.log(`player ${player.name} dead, skipping command ${command.action}`)
       }
     } catch (e) {
       console.error(`while applying command ${command.action}: ${e.message}`)
@@ -187,7 +190,7 @@ export class Player {
   }
 
   takeDamage () {
-    console.log(`player ${this.name} took 1 damage.`)
+    console.log(`player ${this.name} took 1 damage`)
     this.life--
     if (this.life <= 0) {
       this.die('damage')
