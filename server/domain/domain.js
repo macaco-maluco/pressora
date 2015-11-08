@@ -91,6 +91,8 @@ export class Match {
   }
 
   positionPlayers () {
+    if (this.status !== WAITING) return
+
     this.logInteraction()
     var horizontalLength = this.map.coords[0].length - 1
     var verticalLength = this.map.coords.length - 1
