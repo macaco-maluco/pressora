@@ -10,20 +10,21 @@ export default React.createClass({
 
   render: function () {
     return <div className={`player player-${this.props.index + 1} player-${this.props.player.status} player-facing-${this.props.player.pos.facing}`}>
-      <div className='player-body'/>
-      <div className='flames'/>
-      <div className='beam'>
-        <div className='light'/>
-        <div className='light'/>
-        <div className='light'/>
-        <div className='light'/>
-        <div className='light'/>
-        <div className='light'/>
-      </div>
-      <div className='blast'>
-        <div className='particle'/>
-        <div className='particle'/>
-        <div className='particle'/>
+      <div className='player-body'>
+        <div className='flames'/>
+        <div className='beam'>
+          <div className='light'/>
+          <div className='light'/>
+          <div className='light'/>
+          <div className='light'/>
+          <div className='light'/>
+          <div className='light'/>
+        </div>
+        <div className='blast'>
+          <div className='particle'/>
+          <div className='particle'/>
+          <div className='particle'/>
+        </div>
       </div>
 
       <BatteryIndicator battery={this.props.player.battery}/>
