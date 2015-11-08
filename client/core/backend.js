@@ -31,6 +31,10 @@ function performRender (data) {
       if (action === 'recharge') {
         player.status = 'recharge'
       }
+
+      if (action === 'die') {
+        player.status = 'dying'
+      }
     })
 
     const clearStatusAndResolve = () => {
