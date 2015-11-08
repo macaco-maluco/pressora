@@ -27,6 +27,8 @@ export default React.createClass({
       </table>
       {
         React.Children.map(this.props.children, child => {
+          if (!child) return
+
           const left = `${child.props.x * cellWidth}%`
           const top = `${child.props.y * cellWidth}%`
           const width = `${cellWidth}%`
