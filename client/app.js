@@ -50,7 +50,10 @@ export default React.createClass({
         </GameMap>
       }
 
-      <ActionSlots className='selected-actions' onClick={this.props.editActionSlot} actions={this.props.actions}/>
+      {
+        this.props.gameState === 'tick' &&
+        <ActionSlots className='selected-actions' onClick={this.props.editActionSlot} actions={this.props.actions}/>
+      }
 
       {
         this.props.actions.find(action => action.status === 'editting') &&
