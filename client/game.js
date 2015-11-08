@@ -7,6 +7,7 @@ import App from './app'
 import store from './core/store'
 import * as Actions from './core/actions'
 import './core/backend'
+import './vendor/ga'
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 

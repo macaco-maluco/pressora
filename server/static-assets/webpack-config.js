@@ -1,5 +1,5 @@
 import path from 'path'
-import { HotModuleReplacementPlugin, optimize } from 'webpack'
+import { DefinePlugin, HotModuleReplacementPlugin, optimize } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import reactTransform from 'babel-plugin-react-transform'
 import { join } from 'path'
@@ -11,6 +11,11 @@ const watch = process.env.NODE_ENV !== 'production'
 const plugins = [
   new HtmlWebpackPlugin({ template: 'client/landing-page.html', filename: 'index.html', chunks: ['common', 'index'], inject: true }),
   new HtmlWebpackPlugin({ template: 'client/game.html', filename: 'game.html', chunks: ['common', 'game'], inject: true }),
+  new DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+    }
+  }),
   new optimize.CommonsChunkPlugin({ name: 'common' })
 ]
 

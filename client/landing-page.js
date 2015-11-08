@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { App, Page, Section, Hero } from 'neal-react'
 import './landing-page.scss'
 import background from './background.jpg'
+import './vendor/ga'
 
 function startGame () {
   var playerName = document.getElementById('player-name').value
