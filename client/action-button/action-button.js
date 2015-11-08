@@ -11,7 +11,7 @@ export default React.createClass({
   render: function () {
     return <button onTouchStart={this.props.onClick} onClick={this.props.onClick} className={`action-button action-button-${this.props.action} ${this.props.status}`}>
       {
-        this.props.action === 'empty' ? <p>{this.props.index + 1}</p> : ''
+        this.props.action === 'empty' ? <span>{this.props.index + 1}</span> : ''
       }
     </button>
   }
