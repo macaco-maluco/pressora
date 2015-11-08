@@ -21,7 +21,9 @@ export default React.createClass({
           <span className={`${this.props.gameState} ${winner}`}>{message}</span>
           {
             isFinished && (
-              <p><button className='restart-game' onClick={this.handleRestart}>Start another game</button></p>
+              <p><button className='restart-game'
+                         onTouchStart={this.handleRestart}
+                         onClick={this.handleRestart}>Start another game</button></p>
             )
           }
         </div>
