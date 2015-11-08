@@ -5,7 +5,7 @@ module.exports = function(match, player) {
 
   console.log(`player ${player.name} trying to move from`, player.pos, 'to', playerDestination)
 
-  if (player.decreaseBattery(10)) {
+  if (player.consumeBattery(10)) {
     if (Commons.isOutsideMap(playerDestination)) {
       player.die('fall')
     } else {

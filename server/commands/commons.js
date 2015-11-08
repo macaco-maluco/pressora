@@ -19,8 +19,8 @@ const commons = {
   },
 
   findTerrainType (map, coord) {
-    var x = map.coords[coord.x]
-    return x ? x[coord.y] : undefined
+    var y = map.coords[coord.y]
+    return y ? y[coord.x] : undefined
   },
 
   isOutsideMap (destination) {
@@ -38,6 +38,17 @@ const commons = {
   findPlayer (match, coord) {
     return match.players.find(player => player.pos.x === coord.x && player.pos.y === coord.y)
   },
+
+  findSurroundings (position) {
+    var coords = [{x: position.x, y: position.y - 1},
+                  {x: position.x + 1, y: position.y - 1},
+                  {x: position.x + 1, y: position.y},
+                  {x: position.x + 1, y: position.y + 1},
+                  {x: position.x, y: position.y + 1},
+                  {x: position.x - 1, y: position.y + 1},
+                  {x: position.x - 1, y: position.y},
+                  {x: position.x - 1, y: position.y - 1}]
+  }
 }
 
 export default commons

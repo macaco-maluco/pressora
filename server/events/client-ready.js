@@ -43,10 +43,11 @@ class GameLoop {
   }
 
   executeCommands () {
-    var slotSize = 5
-    for (var i = 0; i < slotSize; i++) {
+    var numberOfSlots = 5
+    for (var i = 0; i < numberOfSlots; i++) {
       this.match.executeSlotCommands(i)
       this.emit('render', {players: this.match.players})
+      this.match.clearPlayersTransientState()
     }
   }
 

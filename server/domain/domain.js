@@ -43,12 +43,16 @@ export class Match {
     this.players.forEach(player => this.turn_command_buffer[player.id] = new Array(5))
   }
 
+  clearPlayersTransientState () {
+    this.players.forEach(player => player.transient = {})
+  }
+
   positionPlayers () {
     var horizontalLength = this.map.coords[0].length - 1
     var verticalLength = this.map.coords.length - 1
     var playerPositions = [{x: 0, y: 0, facing: 'S'},
-                           {x: horizontalLength, y: 0, facing: 'S'},
                            {x: horizontalLength, y: verticalLength, facing: 'N'},
+                           {x: horizontalLength, y: 0, facing: 'S'},
                            {x: 0, y: verticalLength, facing: 'N'}]
     this.players.forEach(player => player.pos = playerPositions.shift())
   }
@@ -73,8 +77,8 @@ export class Match {
     try {
       var player = this.players.find(function (player) { return player.id === command.player_id })
       if (player.alive) {
-        console.log(`applying command ${command.action}`)
         require(`../commands/${command.action}`)(this, player)
+        player.transient.action = player.alive ? command.action : 'die'
       }
     } catch (e) {
       console.error(`while applying command ${command.action}: ${e.message}`)
@@ -89,6 +93,8 @@ export class Player {
     this.life = 3
     this.battery = 100
     this.alive = true
+    this.death_reason = undefined
+    this.transient = {}
   }
 
   die (reason) {
@@ -113,16 +119,26 @@ export class Player {
     this.pos.facing = Directions[this.pos.facing].right
   }
 
-  decreaseBattery (amount) {
+  consumeBattery (amount) {
     this.battery -= amount
     if (this.battery <= 0) this.die('battery')
-    console.log(`player ${this.name} current battery at ${this.battery}`)
+    this.logBatteryLevel()
     return this.alive
   }
 
-  increaseBattery (amount) {
+  rechargeBattery (amount) {
     this.battery = Math.min(100, this.battery + amount)
-    console.log(`player ${this.name} current battery at ${this.battery}`)
+    this.logBatteryLevel()
+  }
+
+  takeHit () {
+    if (!this.transient.shield) {
+      takeDamage()
+      return true
+    } else {
+      console.log(`player ${this.name} was protected by shield`)
+      return false
+    }
   }
 
   takeDamage () {
@@ -131,6 +147,10 @@ export class Player {
     if (this.life <= 0) {
       this.die('damage')
     }
+  }
+
+  logBatteryLevel() {
+    console.log(`player ${this.name} current battery at ${this.battery}`)
   }
 }
 
