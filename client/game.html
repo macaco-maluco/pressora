@@ -8,7 +8,25 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 </head>
 <body>
-  <div id="main"></div>
+  <div id="main">
+    <h1 class='pulse'>Loading...</h1>
+    <style>
+      body {
+        background: black;
+        color: #aaa;
+        width: 100%;
+        height: 100%;
+        font-family: sans-serif; /* 1 */
+        letter-spacing: 0.1em;
+      }
+
+      h1 {
+        margin-top: 40vh;
+        text-align: center;
+        font-size: 3vh;
+      }
+    </style>
+  </div>
   <script src="/game-socket/socket.io.js"></script>
 </body>
 </html>

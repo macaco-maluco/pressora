@@ -88,7 +88,7 @@ export default {
     loaders: [
       {
         test: /\.(png|jpg|gif|mp3)$/,
-        loader: 'url-loader?limit=8192&name=[name]-[hash].[ext]'
+        loader: 'url-loader?limit=33792&name=[name]-[hash].[ext]'
       },
       {
         test: /\.scss$/,
