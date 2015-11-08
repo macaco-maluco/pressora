@@ -48,6 +48,9 @@ export default function (state = initialState, action) {
 
     case 'WAIT_FOR':
       return Object.assign({}, state, { timeToWait: action.timeToWait })
+
+    case 'SET_TIME_LEFT':
+      return Object.assign({}, state, { timeLeft: action.timeLeft })
   }
 
   return state

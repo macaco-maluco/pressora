@@ -4,6 +4,7 @@ import GameMapNode from './game-map/game-map-node'
 import ActionSlots from './action-slots/action-slots'
 import GameMessage from './game-message/game-message'
 import Player from './player/player'
+import TurnTimer from './turn-timer/turn-timer'
 import './app.scss'
 
 export default React.createClass({
@@ -16,7 +17,8 @@ export default React.createClass({
     selectAction: React.PropTypes.func,
     movePlayer: React.PropTypes.func,
     gameState: React.PropTypes.string,
-    timeToWait: React.PropTypes.number
+    timeToWait: React.PropTypes.number,
+    timeLeft: React.PropTypes.timeLeft
   },
 
   componentDidMount: function () {
@@ -49,6 +51,11 @@ export default React.createClass({
             })
           }
         </GameMap>
+      }
+
+      {
+        this.props.timeLeft > 0 &&
+        <TurnTimer timeLeft={this.props.timeLeft}/>
       }
 
       {

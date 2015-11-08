@@ -28,6 +28,7 @@ axios.get('/game')
       console.log('tick', data)
       store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'tick' })
+      store.dispatch({ type: 'SET_TIME_LEFT', timeLeft: data.time_left })
     })
     socket.on('render', function (data) {
       console.log('render', data)

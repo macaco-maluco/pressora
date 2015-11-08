@@ -3,6 +3,7 @@ export default {
   players: [],
   gameState: 'searching-for-game',
   timeToWait: null,
+  timeLeft: 0,
 
   actions: [
     { type: 'empty' },
