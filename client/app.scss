@@ -24,7 +24,7 @@ body {
       position: absolute;
       width: 100vw;
       text-align: center;
-      bottom: -64px;
+      bottom: -60px;
     }
 
     .available-actions {
@@ -43,14 +43,14 @@ body {
   @media screen and (orientation:landscape) {
     .selected-actions {
       position: absolute;
-      width: 64px;
-      left: -64px;
+      width: 60px;
+      left: -60px;
       top: 0;
     }
 
     .available-actions {
       position: absolute;
-      width: 64px;
+      width: 60px;
       left: 0px;
       top: 0;
     }
