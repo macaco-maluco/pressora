@@ -145,6 +145,7 @@ export class Player {
     console.log(`player ${this.name} died. Reason: ${reason} :(`)
     this.alive = false
     this.death_reason = reason
+    this.transient.action = 'die'
   }
 
   walk (coord) {
