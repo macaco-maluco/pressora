@@ -62,7 +62,7 @@ export class Match {
 
   addPlayer (player) {
     if (!this.players || this.players.length === 0) {
-      this.join_until = new Date.now() + (30 * 1000) // 30s
+      this.join_until = Date.now() + (30 * 1000) // 30s
     }
     if (!this.players.find(p => p.id === player.id)) {
       this.logInteraction()
