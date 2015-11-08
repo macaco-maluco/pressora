@@ -4,19 +4,27 @@ export default React.createClass({
   propTypes: {
     gameState: React.PropTypes.string,
     timeToWait: React.PropTypes.number,
-    playerId: React.PropTypes.string,
+    player: React.PropTypes.object,
     winnerId: React.PropTypes.string
   },
 
   render: function () {
     var message = this.getMessage()
     var visible = message ? 'visible' : 'invisible'
-    var winner = this.props.winnerId === this.props.playerId ? 'winner' : ''
-    return <div className={`game-message ${visible}`}>
-      <div className={`message ${this.props.gameState}`}>
-        <span className={`${this.props.gameState} ${winner}`}>{message}</span>
+    var winner = this.isWinner() ? 'winner' : ''
+
+    return (
+      <div className={`game-message ${visible}`}>
+        <div className={`message ${this.props.gameState}`}>
+          <span className={`${this.props.gameState} ${winner}`}>{message}</span>
+        </div>
       </div>
-    </div>
+    )
+  },
+
+  isWinner: function () {
+    if (!this.props.player) return false
+    return this.props.winnerId === this.props.player.id
   },
 
   getMessage: function () {
@@ -34,7 +42,20 @@ export default React.createClass({
       case 'disconnect':
         return 'You were disconnected from the game server, try again'
       case 'end-match':
-        return this.props.winnerId === this.props.playerId ? 'You win' : 'Game Over'
+        return this.isWinner() ? 'You win' : `Game Over${this.getDeathReason()}`
+    }
+  },
+
+  getDeathReason: function () {
+    switch (this.props.player.death_reason) {
+      case 'fall':
+        return ', You fell into deep space!'
+      case 'push-fall':
+        return ', You were pushed into deep space'
+      case 'damage':
+        return ', You are too damaged!'
+      case 'battery':
+        return ', No juice in the battery cells'
     }
   }
 })
