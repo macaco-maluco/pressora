@@ -47,7 +47,9 @@ export default React.createClass({
 
                 return (
                   <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
-                    <Player player={player} index={index}/>
+                    <Player player={player}
+                            index={index}
+                            isLocal={this.isLocalPlayer(player)}/>
                   </GameMapNode>
                 )
               })
@@ -79,5 +81,9 @@ export default React.createClass({
 
   getCurrentPlayer: function () {
     return (this.props.players || []).find((p) => p.id === this.props.playerId)
+  },
+
+  isLocalPlayer: function (player) {
+    return player && player.id === this.props.playerId
   }
 })

@@ -30,6 +30,18 @@
     opacity: 0;
   }
 
+  &.player-local:before {
+    content: " ";
+    display: block;
+    border: 2px dashed rgba(39,162,250,0.30);
+    border-radius: 50%;
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    right: 5%;
+    bottom: 5%;
+  }
+
   &.player-facing-N .player-body {
     transform: rotate(0deg);
   }
@@ -255,17 +267,17 @@
       }
     }
   }
-  
+
   &.player-4 {
     .player-body {
       background-image: url('./player/player-yellow.png');
     }
-    
+
     .flames {
       background-image: url('./player/flames-yellow.png');
       margin: -28px -15px;
     }
-    
+
     .beam {
       .light {
         background-color: #EAC352;

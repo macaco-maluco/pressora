@@ -5,11 +5,12 @@ import LifeIndicator from './life-indicator'
 export default React.createClass({
   propTypes: {
     player: React.PropTypes.object,
-    index: React.PropTypes.number
+    index: React.PropTypes.number,
+    isLocal: React.PropTypes.bool
   },
 
   render: function () {
-    return <div className={`player player-${this.props.index + 1} player-${this.props.player.status} player-facing-${this.props.player.pos.facing}`}>
+    return <div className={this.className()}>
       <div className='player-body'>
         <div className='flames'/>
         <div className='beam'>
@@ -31,5 +32,11 @@ export default React.createClass({
       <BatteryIndicator battery={this.props.player.battery}/>
       <LifeIndicator life={this.props.player.life}/>
     </div>
+  },
+
+  className: function () {
+    const localPlayer = this.props.isLocal ? 'player-local' : ''
+    const status = this.props.player.status ? `player-${this.props.player.status}` : ''
+    return `player ${localPlayer} player-${this.props.index + 1} ${status} player-facing-${this.props.player.pos.facing}`
   }
 })
