@@ -1,28 +1,48 @@
 .player {
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  transition: all 0.5s ease-in-out;
+
+  .player-body {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .battery-indicator {
+    position: absolute;
+    top: 2px;
+    left: 55%;
+    right: 10%;
+  }
+
+  .life-indicator {
+    position: absolute;
+    top: 2px;
+    left: 10%;
+    right: 50%;
+    text-align: right;
+  }
 
   .flames, .beam, .particle {
     opacity: 0;
   }
 
-  &.player-facing-N {
+  &.player-facing-N .player-body {
     transform: rotate(0deg);
   }
 
-  &.player-facing-S {
+  &.player-facing-S .player-body {
     transform: rotate(180deg);
   }
 
-  &.player-facing-W {
+  &.player-facing-W .player-body {
     transform: rotate(90deg);
   }
 
-  &.player-facing-E {
+  &.player-facing-E .player-body {
     transform: rotate(90deg);
   }
 
@@ -37,26 +57,28 @@
       animation: beam-on ease-in-out 0.3s infinite;
     }
   }
-  
+
   &.player-blasting {
     .blast {
       .particle {
         animation: blast-on ease-in-out 0.8s alternate;
-        
+
         &:nth-child(2) {
           -webkit-animation-delay: 0.2s;
         }
-        
+
         &:nth-child(3) {
           -webkit-animation-delay: 0.4s;
         }
       }
     }
-    
+
   }
-  
+
   &.player-1 {
-    background-image: url('./player/player-1.png');
+    .player-body {
+      background-image: url('./player/player-1.png');
+    }
 
     .flames {
       width: 45px;
@@ -67,7 +89,7 @@
       left: 50%;
       margin: -16px -23px;
     }
-    
+
     .beam {
       position: absolute;
       width: 1px;
@@ -92,7 +114,9 @@
   }
 
   &.player-2 {
-    background-image: url('./player/player-2.png');
+    .player-body {
+      background-image: url('./player/player-2.png');
+    }
   }
 }
 
@@ -111,15 +135,15 @@
   20% {
     opacity:0.6;
   }
-  
+
   40% {
     opacity:0.2;
   }
-  
+
   60% {
     opacity:0.6;
   }
-  
+
   80% {
     opacity:0.2;
   }
