@@ -5,7 +5,7 @@ let socket
 
 axios.get('/api/game')
   .then(function ({ data }) {
-    store.dispatch({ type: 'LOAD_MAP', map: data.map })
+    store.dispatch({ type: 'LOAD_MAP', map: data.map, playerId: data.player_id })
     store.dispatch({ type: 'SET_GAME_STATE', gameState: 'match-acquired' })
 
     socket = window.io.connect(data.socket_url, { path: '/game-socket' })
@@ -42,6 +42,7 @@ axios.get('/api/game')
     socket.on('end-match', function (data) {
       console.log('end-match', data)
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'end-match' })
+      store.dispatch({ type: 'SET_WINNER', winnerId: data.winner_id })
     })
     socket.on('turn-starts-in', function (data) {
       console.log('turn-starts-in', data)

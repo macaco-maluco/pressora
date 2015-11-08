@@ -18,7 +18,9 @@ export default React.createClass({
     movePlayer: React.PropTypes.func,
     gameState: React.PropTypes.string,
     timeToWait: React.PropTypes.number,
-    timeLeft: React.PropTypes.number
+    timeLeft: React.PropTypes.number,
+    playerId: React.PropTypes.string,
+    winnerId: React.PropTypes.string
   },
 
   componentDidMount: function () {
@@ -40,7 +42,7 @@ export default React.createClass({
 
   render: function () {
     return <div className='app' onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
-      <GameMessage gameState={this.props.gameState} timeToWait={this.props.timeToWait}/>
+      <GameMessage gameState={this.props.gameState} timeToWait={this.props.timeToWait} playerId={this.props.playerId} winnerId={this.props.winnerId}/>
       {
         this.props.map && <GameMap map={this.props.map}>
           {

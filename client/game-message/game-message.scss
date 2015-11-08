@@ -43,5 +43,13 @@
     span.disconnect:after {
       content: " (︶︹︺)"
     }
+
+    span.end-match:after {
+      content: " (╯°□°）╯︵ ┻━┻"
+    }
+
+    span.end-match.winner:after {
+      content: " ヾ(⌐■_■)ノ♪"
+    }
   }
 }

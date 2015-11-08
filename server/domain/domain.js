@@ -21,7 +21,7 @@ export class Match {
     this.maxIdleTime = 10 * 60 * 1000 // 10m
     this.status = WAITING
     this.turn_command_buffer = {}
-    this.max_turns = 20
+    this.max_turns = 15
   }
 
   isReadyToLoad () {
@@ -35,7 +35,7 @@ export class Match {
   }
 
   incTurn () {
-    if (++this.turn >= this.max_turns) this.status = FINISHED
+    if (++this.turn > this.max_turns) this.status = FINISHED
   }
 
   checkEndGame () {

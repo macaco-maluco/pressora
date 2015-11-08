@@ -4,6 +4,8 @@ export default {
   gameState: 'searching-for-game',
   timeToWait: null,
   timeLeft: 0,
+  playerId: null,
+  winnerId: null,
 
   actions: [
     { type: 'empty' },

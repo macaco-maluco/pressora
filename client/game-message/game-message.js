@@ -3,15 +3,18 @@ import React from 'react'
 export default React.createClass({
   propTypes: {
     gameState: React.PropTypes.string,
-    timeToWait: React.PropTypes.number
+    timeToWait: React.PropTypes.number,
+    playerId: React.PropTypes.string,
+    winnerId: React.PropTypes.string
   },
 
   render: function () {
     var message = this.getMessage()
     var visible = message ? 'visible' : 'invisible'
+    var winner = this.props.winnerId === this.props.playerId ? 'winner' : ''
     return <div className={`game-message ${visible}`}>
       <div className={`message ${this.props.gameState}`}>
-        <span className={this.props.gameState}>{message}</span>
+        <span className={`${this.props.gameState} ${winner}`}>{message}</span>
       </div>
     </div>
   },
@@ -30,6 +33,8 @@ export default React.createClass({
         return 'Some error occurred, try to load the game again :/'
       case 'disconnect':
         return 'You were disconnected from the game server, try again'
+      case 'end-match':
+        return this.props.winnerId === this.props.playerId ? 'You win' : 'Game Over'
     }
   }
 })

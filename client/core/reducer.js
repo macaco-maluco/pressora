@@ -36,8 +36,7 @@ export default function (state = initialState, action) {
       return Object.assign({}, state, { actions })
 
     case 'LOAD_MAP':
-      const map = action.map
-      return Object.assign({}, state, { map })
+      return Object.assign({}, state, { map: action.map, playerId: action.playerId })
 
     case 'LOAD_PLAYERS':
       players = action.players
@@ -51,6 +50,9 @@ export default function (state = initialState, action) {
 
     case 'SET_TIME_LEFT':
       return Object.assign({}, state, { timeLeft: action.timeLeft })
+
+    case 'SET_WINNER':
+      return Object.assign({}, state, { winnerId: action.winnerId })
   }
 
   return state

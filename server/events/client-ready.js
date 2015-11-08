@@ -21,18 +21,24 @@ class GameLoop {
   start () {
     this.match.incTurn()
     if (this.match.isFinished()) {
-      this.emit('end-match', { winner: this.match.winner })
+      this.sendEndMatch()
     } else {
       this.scheduleTurnCountdown(this.turnCountdownDuration, () => {
         this.run().then(() => {
           if (this.match.isFinished()) {
-            this.emit('end-match', { winner: this.match.winner })
+            this.sendEndMatch()
           } else {
             this.start()
           }
         })
       })
     }
+  }
+
+  sendEndMatch () {
+    var winner = this.match.winner
+    var winnerId = winner ? winner.id : undefined
+    this.emit('end-match', { winner_id: winnerId })
   }
 
   run () {
