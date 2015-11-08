@@ -3,7 +3,7 @@ import store from './store'
 
 let socket
 
-axios.get('/game')
+axios.get('/api/game')
   .then(function ({ data }) {
     store.dispatch({ type: 'LOAD_MAP', map: data.map })
     store.dispatch({ type: 'SET_GAME_STATE', gameState: 'match-acquired' })
