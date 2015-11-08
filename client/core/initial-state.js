@@ -10,7 +10,6 @@ export default {
     { type: 'empty' },
     { type: 'empty' },
     { type: 'empty' },
-    { type: 'empty' },
     { type: 'empty' }
   ],
 
