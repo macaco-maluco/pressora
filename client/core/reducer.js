@@ -45,6 +45,9 @@ export default function (state = initialState, action) {
 
     case 'SET_GAME_STATE':
       return Object.assign({}, state, { gameState: action.gameState })
+
+    case 'WAIT_FOR':
+      return Object.assign({}, state, { timeToWait: action.timeToWait})
   }
 
   return state

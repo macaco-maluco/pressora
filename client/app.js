@@ -37,7 +37,7 @@ export default React.createClass({
 
   render: function () {
     return <div className='app' onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
-      <GameMessage gameState={this.props.gameState}/>
+      <GameMessage gameState={this.props.gameState} timeToWait={this.props.timeToWait}/>
       {
         this.props.map && <GameMap map={this.props.map}>
           {

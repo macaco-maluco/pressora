@@ -2,6 +2,7 @@ export default {
   map: null,
   players: [],
   gameState: 'searching-for-game',
+  timeToWait: null,
 
   actions: [
     { type: 'empty' },

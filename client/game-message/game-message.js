@@ -2,7 +2,8 @@ import React from 'react'
 
 export default React.createClass({
   propTypes: {
-    gameState: React.PropTypes.string
+    gameState: React.PropTypes.string,
+    timeToWait: React.PropTypes.number
   },
 
   render: function () {
@@ -21,6 +22,8 @@ export default React.createClass({
         return 'Searching for game'
       case 'wait-for-players':
         return 'Waiting for players'
+      case 'turn-starts-in':
+        return `Turn starts in ${this.props.timeToWait} seconds`
     }
   }
 })

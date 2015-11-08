@@ -15,6 +15,7 @@ class GameLoop {
     this.socket = socket
     this.match = match
     this.turnDuration = 30
+    this.turnCountdownDuration = 3
   }
 
   start () {
@@ -22,12 +23,14 @@ class GameLoop {
     if (this.match.isFinished()) {
       this.emit('end-match', { winner: this.match.winner })
     } else {
-      this.run().then(() => {
-        if (this.match.isFinished()) {
-          this.emit('end-match', { winner: this.match.winner })
-        } else {
-          this.start()
-        }
+      this.scheduleTurnCountdown(this.turnCountdownDuration, () => {
+        this.run().then(() => {
+          if (this.match.isFinished()) {
+            this.emit('end-match', { winner: this.match.winner })
+          } else {
+            this.start()
+          }
+        })
       })
     }
   }
@@ -60,6 +63,14 @@ class GameLoop {
     setTimeout(() => {
       this.emit('tick', { time_left: timeLeft, players: this.match.players })
       if (timeLeft > 0) this.scheduleTick(timeLeft - 1, callback)
+      else callback()
+    }, 1000)
+  }
+
+  scheduleTurnCountdown(timeToStartTurn, callback) {
+    setTimeout(() => {
+      this.emit('turn-starts-in', { time_to_start_turn: timeToStartTurn })
+      if (timeToStartTurn > 0) this.scheduleTurnCountdown(timeToStartTurn - 1, callback)
       else callback()
     }, 1000)
   }
