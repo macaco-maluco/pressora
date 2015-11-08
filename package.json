@@ -9,7 +9,7 @@
     "test": "standard",
     "dev": "supervisor --watch server bin/server.js",
     "build": "node bin/build.js",
-    "deploy": "modulus deploy"
+    "deploy": "NODE_ENV=production npm run build && modulus deploy"
   },
   "repository": {
     "type": "git",
