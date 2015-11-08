@@ -24,7 +24,7 @@ module.exports = function gameAction (req, res) {
 function findMatch (id) {
   if (id) return matchQueue.find(match => match.id === id)
   return matchQueue
-    .filter(match => match.players.length < match.map.max_players)
+    .filter(match => match.players.length < match.map.max_players && match.status === 'waiting' && !match.isExpired())
     .pop()
 }
 
