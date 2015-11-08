@@ -37,7 +37,8 @@ export default React.createClass({
 
   className: function () {
     const localPlayer = this.props.isLocal ? 'player-local' : ''
-    const status = this.props.player.status ? `player-${this.props.player.status}` : ''
+    let status = this.props.player.status ? `player-${this.props.player.status}` : ''
+    if (!this.props.player.alive) status = 'player-dying'
     return `player ${localPlayer} player-${this.props.index + 1} ${status} player-facing-${this.props.player.pos.facing}`
   }
 })
