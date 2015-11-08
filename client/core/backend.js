@@ -15,6 +15,22 @@ function performRender (data) {
           action === 'spin-right') {
         player.status = 'moving'
       }
+
+      if (action === 'blast') {
+        player.status = 'blasting'
+      }
+
+      if (action === 'beam') {
+        player.status = 'shooting'
+      }
+
+      if (action === 'shield') {
+        player.status = 'shielding'
+      }
+
+      if (action === 'recharge') {
+        player.status = 'recharge'
+      }
     })
 
     const clearStatusAndResolve = () => {
