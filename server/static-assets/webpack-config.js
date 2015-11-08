@@ -9,8 +9,8 @@ const watch = process.env.NODE_ENV !== 'production'
 
 
 const plugins = [
-  new HtmlWebpackPlugin({ template: 'client/template.html', filename: 'index.html', chunks: ['index'], inject: true }),
-  new HtmlWebpackPlugin({ template: 'client/template.html', filename: 'game.html', chunks: ['game'], inject: true })
+  new HtmlWebpackPlugin({ template: 'client/landing-page.html', filename: 'index.html', chunks: ['index'], inject: true }),
+  new HtmlWebpackPlugin({ template: 'client/game.html', filename: 'game.html', chunks: ['game'], inject: true })
 ]
 
 if (watch) {
@@ -21,7 +21,7 @@ if (watch) {
 
 
 const entry = {
-  index: ['./index'],
+  index: ['./landing-page'],
   game: ['./game']
 }
 if (watch) {
