@@ -9,8 +9,8 @@ module.exports = function gameAction (req, res) {
   var match = findMatch(req.session.matchId)
 
   if (match) {
-    var player = findPlayer(match, req.session.playerId)
-    if (player && !player.alive) {
+    var loggedPlayer = findPlayer(match, req.session.playerId)
+    if (loggedPlayer && !loggedPlayer.alive) {
       match = null
     }
   }
@@ -66,7 +66,7 @@ function createPlayer (req) {
 }
 
 function getPlayerName (req) {
-  var playerName = req.query.playerName
+  var playerName = (req.query.playerName || '').substr(0, 30)
   if (!playerName || playerName.length === 0) playerName = null
   return req.session.playerName || playerName || `Guest ${++guests}`
 }

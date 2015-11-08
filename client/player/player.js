@@ -35,7 +35,7 @@ export default React.createClass({
       </div>
       <div className='recharge'/>
       <div className='shield'/>
-
+      <span className='name'>{this.props.player.name}</span>
       <BatteryIndicator battery={this.props.player.battery}/>
       <LifeIndicator life={this.props.player.life}/>
     </div>

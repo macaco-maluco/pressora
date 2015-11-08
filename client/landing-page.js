@@ -17,7 +17,11 @@ ReactDOM.render((
         <h1 className='display-1'> Pressora </h1>
         <p className='lead'>Control your battleships remotely while dealing with the latency of space battles!</p>
         <p className='text-center'>
-          <input id='player-name' type='text' placeholder='Your name' className='form-control'/>
+          <input id='player-name'
+                 type='text'
+                 placeholder='Your name'
+                 className='form-control'
+                 maxLength='30'/>
         </p>
         <p>
           <button onClick={startGame} className='btn btn-white'>
