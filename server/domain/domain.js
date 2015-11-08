@@ -40,7 +40,7 @@ export class Match {
 
   checkEndGame () {
     var players_alive = this.players.filter(player => player.alive)
-    if (players_alive.length() <= 1) {
+    if (players_alive.length <= 1) {
       this.status = FINISHED
       this.winner = players_alive.pop()
       return true
@@ -50,10 +50,6 @@ export class Match {
 
   isFinished () {
     return this.status === FINISHED
-  }
-
-  hasNoMoreThanOnePlayerAlive () {
-    return this.players.filter(player => player.alive).length() <= 1
   }
 
   isExpired () {

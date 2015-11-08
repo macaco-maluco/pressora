@@ -2,6 +2,7 @@ import React from 'react'
 import GameMap from './game-map/game-map'
 import GameMapNode from './game-map/game-map-node'
 import ActionSlots from './action-slots/action-slots'
+import GameMessage from './game-message/game-message'
 import Player from './player/player'
 import './app.scss'
 
@@ -13,7 +14,8 @@ export default React.createClass({
     availableActions: React.PropTypes.array,
     editActionSlot: React.PropTypes.func,
     selectAction: React.PropTypes.func,
-    movePlayer: React.PropTypes.func
+    movePlayer: React.PropTypes.func,
+    gameState: React.PropTypes.string
   },
 
   componentDidMount: function () {
@@ -35,6 +37,7 @@ export default React.createClass({
 
   render: function () {
     return <div className='app' onTouchStart={this.handleTouch} onTouchMove={this.handleTouch} onMouseMove={this.handleTouch}>
+      <GameMessage gameState={this.props.gameState}/>
       {
         this.props.map && <GameMap map={this.props.map}>
           {

@@ -42,6 +42,9 @@ export default function (state = initialState, action) {
     case 'LOAD_PLAYERS':
       players = action.players
       return Object.assign({}, state, { players })
+
+    case 'SET_GAME_STATE':
+      return Object.assign({}, state, { gameState: action.gameState })
   }
 
   return state

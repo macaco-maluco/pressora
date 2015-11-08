@@ -1,6 +1,7 @@
 export default {
   map: null,
   players: [],
+  gameState: 'searching-for-game',
 
   actions: [
     { type: 'empty' },
