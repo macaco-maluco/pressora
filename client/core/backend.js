@@ -6,8 +6,25 @@ let socket
 
 function performRender (data) {
   return new Promise(function (resolve) {
+    data.players.forEach(player => {
+      const action = player.transient.action
+
+      if (action === 'forward' ||
+          action === 'backward' ||
+          action === 'spin-left' ||
+          action === 'spin-right') {
+        player.status = 'moving'
+      }
+    })
+
+    const clearStatusAndResolve = () => {
+      data.players.forEach(player => delete player.status)
+      store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
+      resolve()
+    }
+
     store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
-    setTimeout(resolve, 1000)
+    setTimeout(clearStatusAndResolve, 1000)
   })
 }
 
