@@ -87,7 +87,8 @@
   }
 
   &.player-dying {
-    animation: dying ease-in-out 1s;
+    animation: dying ease-in-out 1.2s;
+    animation-fill-mode: forwards;
   }
 
   &.player-damaged {
@@ -386,12 +387,20 @@
   }
 }
 @keyframes dying {
-  from {
+  0% {
     transform-origin: center;
     opacity: 1;
   }
+  
+  40% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
 
-  to {
+  80% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  
+  100% {
     transform-origin: center;
     transform: rotate3d(0, 0, 1, 360deg);
     opacity: 0;
