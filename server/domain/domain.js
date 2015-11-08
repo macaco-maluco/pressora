@@ -65,12 +65,12 @@ export class Match {
 
   acceptCommands () {
     this.logInteraction()
-    this.status = ACCEPTING_COMMANDS
+    if (this.status !== FINISHED) this.status = ACCEPTING_COMMANDS
   }
 
   blockCommands () {
     this.logInteraction()
-    this.status = BLOCKING_COMMANDS
+    if (this.status !== FINISHED) this.status = BLOCKING_COMMANDS
   }
 
   clearCommands () {
