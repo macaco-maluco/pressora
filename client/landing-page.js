@@ -44,7 +44,7 @@ ReactDOM.render((
 
        <Section heading='Built with love' className='gray'>
         <p>Graphic art provided by <a href='http://opengameart.org/content/space-game-art-pack-extended'>Tatermand</a></p>
-        <p>Buttons provided by <a href='http://opengameart.org/content/game-icons-expansion'>Kenney</a></p>
+        <p>Rocket favicon by Mister Pixel from the <a href='https://thenounproject.com'>Noun Project</a></p>
       </Section>
     </Page>
   </App>
