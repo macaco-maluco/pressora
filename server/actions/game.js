@@ -7,7 +7,16 @@ var matchQueueWatchdogTime = 5 * 60 * 1000 // 5m
 
 module.exports = function gameAction (req, res) {
   var match = findMatch(req.session.matchId)
+
+  if (match) {
+    var player = findPlayer(match, req.session.playerId)
+    if (player && !player.alive) {
+      match = null
+    }
+  }
+
   if (!match) matchQueue.push(match = new Match())
+
   req.session.matchId = match.id
 
   var player = createPlayer(req)
@@ -38,6 +47,10 @@ function findMatch (id) {
              !match.isExpired()
     })
     .pop()
+}
+
+function findPlayer (match, playerId) {
+  return match.players.find(player => player.id === playerId)
 }
 
 function createPlayer (req) {
