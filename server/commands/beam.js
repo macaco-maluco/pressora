@@ -1,6 +1,6 @@
 var Commons = require('./commons')
 
-module.exports = function(match, player) {
+module.exports = function (match, player) {
   console.log(`player ${player.name} is firing a beam`)
   if (player.consumeBattery(20)) {
     var destination = Commons.findDestination(match.map, player.pos, player.pos.facing)

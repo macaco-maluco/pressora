@@ -1,6 +1,6 @@
 var Commons = require('./commons')
 
-module.exports = function(match, player) {
+module.exports = function (match, player) {
   console.log(`player ${player.name} is blasting`)
   if (player.consumeBattery(20)) {
     var enemiesDamaged = []
@@ -10,6 +10,6 @@ module.exports = function(match, player) {
         enemiesDamaged.push(enemy)
       }
     })
-    player.transient.blast = { damages_players: enemiesHit }
+    player.transient.blast = { damages_players: enemiesDamaged }
   }
 }

@@ -133,7 +133,7 @@ export class Player {
 
   takeHit () {
     if (!this.transient.shield) {
-      takeDamage()
+      this.takeDamage()
       return true
     } else {
       console.log(`player ${this.name} was protected by shield`)
@@ -149,7 +149,7 @@ export class Player {
     }
   }
 
-  logBatteryLevel() {
+  logBatteryLevel () {
     console.log(`player ${this.name} current battery level: ${this.battery}%`)
   }
 }

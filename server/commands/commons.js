@@ -31,7 +31,7 @@ const commons = {
     return map.terrain_types.walk.indexOf(terrain_type) !== -1
   },
 
-  isWall(map, terrain_type) {
+  isWall (map, terrain_type) {
     return map.terrain_types.wall.indexOf(terrain_type) !== -1
   },
 
@@ -40,14 +40,16 @@ const commons = {
   },
 
   findSurroundings (position) {
-    var coords = [{x: position.x, y: position.y - 1},
-                  {x: position.x + 1, y: position.y - 1},
-                  {x: position.x + 1, y: position.y},
-                  {x: position.x + 1, y: position.y + 1},
-                  {x: position.x, y: position.y + 1},
-                  {x: position.x - 1, y: position.y + 1},
-                  {x: position.x - 1, y: position.y},
-                  {x: position.x - 1, y: position.y - 1}]
+    return [
+      {x: position.x, y: position.y - 1},
+      {x: position.x + 1, y: position.y - 1},
+      {x: position.x + 1, y: position.y},
+      {x: position.x + 1, y: position.y + 1},
+      {x: position.x, y: position.y + 1},
+      {x: position.x - 1, y: position.y + 1},
+      {x: position.x - 1, y: position.y},
+      {x: position.x - 1, y: position.y - 1}
+    ]
   }
 }
 

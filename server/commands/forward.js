@@ -1,6 +1,6 @@
 var Commons = require('./commons')
 
-module.exports = function(match, player) {
+module.exports = function (match, player) {
   var playerDestination = Commons.findDestination(match.map, player.pos, player.pos.facing)
 
   console.log(`player ${player.name} trying to move from`, player.pos, 'to', playerDestination)

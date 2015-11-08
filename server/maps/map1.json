@@ -16,5 +16,6 @@
     "walk": [14],
     "wall": [1]
   },
+  "min_players": 1,
   "max_players": 2
 }
