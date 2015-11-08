@@ -26,7 +26,7 @@
     text-align: right;
   }
 
-  .flames, .beam, .particle, .recharge, .shild {
+  .flames, .beam, .particle, .recharge, .shield {
     opacity: 0;
   }
 
@@ -94,16 +94,16 @@
   &.player-damaged {
     animation: damage ease-in-out .6s;
   }
-  
+
   &.player-recharge {
     .recharge {
       opacity: 1;
     }
   }
 
-  &.player-shilding {
-    .shild {
-      animation: shild ease-in-out .5s infinite;
+  &.player-shielding {
+    .shield {
+      animation: shield ease-in-out .5s infinite;
     }
   }
 
@@ -145,7 +145,7 @@
     background: url('./recharge.svg') no-repeat 0 0;
   }
 
-  .shild {
+  .shield {
     top: 0%;
     left: 0%;
     position: absolute;
@@ -202,7 +202,7 @@
       }
     }
 
-    .shild {
+    .shield {
       border-color: #2AF19F;
       box-shadow: 0px 0px 30px 10px #2AF19F;
     }
@@ -251,7 +251,7 @@
       }
     }
 
-    .shild {
+    .shield {
       border-color: #D9555D;
       box-shadow: 0px 0px 30px 10px #D9555D;
     }
@@ -294,7 +294,7 @@
       }
     }
 
-    .shild {
+    .shield {
       border-color: #0ff;
       box-shadow: 0px 0px 30px 10px #0ff;
     }
@@ -341,7 +341,7 @@
       }
     }
 
-    .shild {
+    .shield {
       border-color: #EAC352;
       box-shadow: 0px 0px 30px 10px #EAC352;
     }
@@ -421,7 +421,7 @@
   }
 }
 
-@keyframes shild {
+@keyframes shield {
   0%{opacity:1;}
   10%{opacity:0.5;}
   20%{opacity:1;}
