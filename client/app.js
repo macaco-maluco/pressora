@@ -17,6 +17,7 @@ export default React.createClass({
     selectAction: React.PropTypes.func,
     movePlayer: React.PropTypes.func,
     gameState: React.PropTypes.string,
+    gameFinished: React.PropTypes.bool,
     timeToWait: React.PropTypes.number,
     timeLeft: React.PropTypes.number,
     playerId: React.PropTypes.string,
@@ -35,6 +36,7 @@ export default React.createClass({
            onMouseMove={this.handleTouch}>
 
         <GameMessage gameState={this.props.gameState}
+                     gameFinished={this.props.gameFinished}
                      timeToWait={this.props.timeToWait}
                      player={this.getCurrentPlayer()}
                      winnerId={this.props.winnerId}/>

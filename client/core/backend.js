@@ -86,11 +86,12 @@ axios.get(`/api/game${window.location.search}`)
     })
     socket.on('end-turn', function (data) {
       console.log('end-turn', data, renderQueue.length)
-      store.dispatch({ type: 'SET_GAME_STATE', gameState: 'end-turn' })
 
       renderQueue.reduce((promise, perform) => {
         return promise.then(perform)
       }, Promise.resolve()).then(() => renderQueue = [])
+
+      store.dispatch({ type: 'SET_GAME_STATE', gameState: 'end-turn', gameFinished: data.game_finished })
     })
     socket.on('end-match', function (data) {
       console.log('end-match', data)

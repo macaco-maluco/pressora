@@ -51,7 +51,7 @@ class GameLoop {
       this.executeCommands()
       this.match.blockCommands()
       this.match.clearCommands()
-      this.emit('end-turn')
+      this.emit('end-turn', { game_finished: this.match.isFinished() })
     })
   }
 

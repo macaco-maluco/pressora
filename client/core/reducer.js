@@ -43,7 +43,7 @@ export default function (state = initialState, action) {
       return Object.assign({}, state, { players })
 
     case 'SET_GAME_STATE':
-      return Object.assign({}, state, { gameState: action.gameState })
+      return Object.assign({}, state, { gameState: action.gameState, gameFinished: action.gameFinished })
 
     case 'WAIT_FOR':
       return Object.assign({}, state, { timeToWait: action.timeToWait })

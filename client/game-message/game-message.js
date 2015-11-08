@@ -3,6 +3,7 @@ import React from 'react'
 export default React.createClass({
   propTypes: {
     gameState: React.PropTypes.string,
+    gameFinished: React.PropTypes.bool,
     timeToWait: React.PropTypes.number,
     player: React.PropTypes.object,
     winnerId: React.PropTypes.string
@@ -28,6 +29,10 @@ export default React.createClass({
   },
 
   getMessage: function () {
+    if (this.isGameRunningAndPlayerDead()) {
+      return `You died! ${this.getDeathReason()}`
+    }
+
     switch (this.props.gameState) {
       case 'searching-for-game':
         return 'Searching for game'
@@ -35,14 +40,14 @@ export default React.createClass({
         return 'Waiting for players'
       case 'turn-starts-in':
         return `Turn starts in ${this.props.timeToWait} seconds`
-      case 'no-matches-found':
-        return 'No matches found'
-      case 'error':
-        return 'Some error occurred, try to load the game again :/'
-      case 'disconnect':
-        return 'You were disconnected from the game server, try again'
       case 'end-match':
         return this.isWinner() ? 'You win' : `Game Over${this.getDeathReason()}`
+      case 'no-matches-found':
+        return 'No matches found'
+      case 'disconnect':
+        return 'You were disconnected from the game server, try again'
+      case 'error':
+        return 'Some error occurred, try to load the game again :/'
     }
   },
 
@@ -59,5 +64,9 @@ export default React.createClass({
       default:
         return ''
     }
+  },
+
+  isGameRunningAndPlayerDead: function () {
+    return !this.props.gameFinished && !this.props.player.alive
   }
 })
