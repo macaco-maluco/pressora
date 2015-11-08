@@ -43,7 +43,7 @@ export default React.createClass({
           {
             this.props.players.map((player, index) => {
               return <GameMapNode key={index} x={player.pos.x} y={player.pos.y}>
-                <Player player={player}/>
+                <Player player={player} index={index}/>
               </GameMapNode>
             })
           }
