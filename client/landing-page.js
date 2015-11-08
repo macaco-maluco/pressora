@@ -22,6 +22,13 @@ ReactDOM.render((
           <button onClick={startGame} className='btn btn-white'>
             Play
           </button>
+          <span className='btn btn-white btn-vote'>
+            <iframe src='http://nodeknockout.com/iframe/macaco-frito'
+                    frameBorder={0}
+                    scrolling='no'
+                    allowTransparency='true'
+                    width={115} height={25} />
+          </span>
         </p>
       </Hero>
 
