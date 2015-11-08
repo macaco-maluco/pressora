@@ -10,10 +10,8 @@ export default React.createClass({
   },
 
   render: function () {
-    return <div className={`player player-1 player-${this.props.player.status} player-facing-${this.props.player.pos.facing}`}>
-
+    return <div className={`player player-${this.props.player.id} player-${this.props.player.status} player-facing-${this.props.player.pos.facing}`}>
       <div className='player-body'/>
-
       <audio id='beam-sound' src={player1Beam} preload='auto'>
         Your browser does not support the <code>audio</code> element.
       </audio>

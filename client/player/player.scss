@@ -75,47 +75,83 @@
 
   }
 
+  .flames {
+    width: 30px;
+    height: 133px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin: -20px -16px;
+    background-repeat: no-repeat;
+  }
+
+  .beam {
+    position: absolute;
+    width: 1px;
+    height: 100px;
+    bottom: 100%;
+    left: 50%;
+  }
+
+  .blast {
+    .particle {
+      top: 0%;
+      left: 0%;
+      position: absolute;
+      border:1px solid #0dd;
+      background-color: #0dd;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px 5px #0ff;
+    }
+  }
+
   &.player-1 {
     .player-body {
-      background-image: url('./player/player-1.png');
+      background-image: url('./player/player-green.png');
     }
 
     .flames {
-      width: 45px;
-      height: 82px;
-      background-image: url('./player/player-1-flames.png');
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin: -16px -23px;
+      background-image: url('./player/flames-green.png');
     }
 
     .beam {
-      position: absolute;
-      width: 1px;
-      height: 100px;
-      bottom: 100%;
-      left: 50%;
-      background-color: #0dd;
-      box-shadow: 0px 0px 10px 5px #0ff;
-    }
-
-    .blast {
-      .particle {
-        top: 0%;
-        left: 0%;
-        position: absolute;
-        border:1px solid #0dd;
-        background-color: #0dd;
-        border-radius: 50%;
-        box-shadow: 0px 0px 10px 5px #0ff;
-      }
+      background-color: #2AF19F;
+      box-shadow: 0px 0px 10px 5px #2AF19F;
     }
   }
 
   &.player-2 {
     .player-body {
-      background-image: url('./player/player-2.png');
+      background-image: url('./player/player-red.png');
+    }
+
+    .flames {
+      background-image: url('./player/flames-red.png');
+    }
+  }
+  
+  &.player-3 {
+    .player-body {
+      background-image: url('./player/player-blue.png');
+    }
+    .flames {
+      background-image: url('./player/flames-blue.png');
+    }
+
+    .beam {
+      background-color: #0dd;
+      box-shadow: 0px 0px 10px 5px #0ff;
+    }
+  }
+  
+  &.player-4 {
+    .player-body {
+      background-image: url('./player/player-yellow.png');
+    }
+    
+    .flames {
+      background-image: url('./player/flames-yellow.png');
+      margin: -28px -15px;
     }
   }
 }
