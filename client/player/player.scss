@@ -75,6 +75,10 @@
 
   }
 
+  &.player-dying {
+    animation: dying ease-in-out 1s;
+  }
+  
   .flames {
     width: 30px;
     height: 133px;
@@ -310,5 +314,17 @@
     opacity: 0;
     margin-left: -40%;
     margin-top: -50%;
+  }
+}
+@keyframes dying {
+  from {
+    transform-origin: center;
+    opacity: 1;
+  }
+
+  to {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 360deg);
+    opacity: 0;
   }
 }
