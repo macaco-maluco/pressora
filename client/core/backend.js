@@ -1,7 +1,19 @@
 import axios from 'axios'
 import store from './store'
 
+let renderQueue = []
 let socket
+
+function performRender (data) {
+  return new Promise(function (resolve) {
+    store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
+    setTimeout(resolve, 1000)
+  })
+}
+
+function enqueueRender (data) {
+  renderQueue.push(performRender.bind(null, data))
+}
 
 axios.get(`/api/game${window.location.search}`)
   .then(function ({ data }) {
@@ -32,12 +44,16 @@ axios.get(`/api/game${window.location.search}`)
     })
     socket.on('render', function (data) {
       console.log('render', data)
-      store.dispatch({ type: 'LOAD_PLAYERS', players: data.players })
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'render' })
+      enqueueRender(data)
     })
     socket.on('end-turn', function (data) {
-      console.log('end-turn', data)
+      console.log('end-turn', data, renderQueue.length)
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'end-turn' })
+
+      renderQueue.reduce((promise, perform) => {
+        return promise.then(perform)
+      }, Promise.resolve()).then(() => renderQueue = [])
     })
     socket.on('end-match', function (data) {
       console.log('end-match', data)

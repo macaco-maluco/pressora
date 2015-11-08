@@ -28,7 +28,7 @@ class GameLoop {
           if (this.match.isFinished()) {
             this.sendEndMatch()
           } else {
-            this.start()
+            this.scheduleWaitRender().then(() => this.start())
           }
         })
       })
@@ -73,12 +73,18 @@ class GameLoop {
     }, 1000)
   }
 
-  scheduleTurnCountdown(timeToStartTurn, callback) {
+  scheduleTurnCountdown (timeToStartTurn, callback) {
     setTimeout(() => {
       this.emit('turn-starts-in', { time_to_start_turn: timeToStartTurn })
       if (timeToStartTurn > 0) this.scheduleTurnCountdown(timeToStartTurn - 1, callback)
       else callback()
     }, 1000)
+  }
+
+  scheduleWaitRender () {
+    return new Promise(function (resolve, reject) {
+      setTimeout(resolve, 6000)
+    })
   }
 
   emit (event, message) {
