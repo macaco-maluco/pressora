@@ -56,6 +56,8 @@ export default React.createClass({
         return ', You are too damaged!'
       case 'battery':
         return ', No juice in the battery cells'
+      default:
+        return ''
     }
   }
 })
