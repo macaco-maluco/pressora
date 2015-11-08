@@ -94,13 +94,13 @@ export class Match {
     if (this.status !== WAITING) return
 
     this.logInteraction()
-    var horizontalLength = this.map.coords[0].length - 1
-    var verticalLength = this.map.coords.length - 1
+    var horizontalLength = this.map.coords[0].length - 2
+    var verticalLength = this.map.coords.length - 2
     var playerPositions = [
-      {x: 0, y: 0, facing: 'S'},
+      {x: 1, y: 1, facing: 'S'},
       {x: horizontalLength, y: verticalLength, facing: 'N'},
-      {x: horizontalLength, y: 0, facing: 'S'},
-      {x: 0, y: verticalLength, facing: 'N'}
+      {x: horizontalLength, y: 1, facing: 'S'},
+      {x: 1, y: verticalLength, facing: 'N'}
     ]
     this.players.forEach(player => player.pos = playerPositions.shift())
   }
