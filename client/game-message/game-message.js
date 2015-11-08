@@ -67,6 +67,7 @@ export default React.createClass({
   },
 
   isGameRunningAndPlayerDead: function () {
+    if (!this.props.player) return false
     return !this.props.gameFinished && !this.props.player.alive
   }
 })
