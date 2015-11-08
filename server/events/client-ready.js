@@ -5,7 +5,7 @@ module.exports = function (context, socket) {
 
     if (context.match.isReadyToStart()) {
       console.log(`starting match ${context.match.id}`)
-      new GameLoop(socket, context.match).start()
+      new GameLoop(socket, context.match).start().catch(err => console.err(err))
     }
   }
 }
@@ -22,14 +22,14 @@ class GameLoop {
   start () {
     this.match.incTurn()
     if (this.match.isFinished()) {
-      this.wait().then(() => this.sendEndMatch())
+      return this.wait().then(() => this.sendEndMatch())
     } else {
-      this.scheduleTurnCountdown(this.turnCountdownDuration, () => {
-        this.run().then(() => {
+      return this.scheduleTurnCountdown(this.turnCountdownDuration).then(() => {
+        return this.run().then(() => {
           if (this.match.isFinished()) {
-            this.wait().then(() => this.sendEndMatch())
+            return this.wait().then(() => this.sendEndMatch())
           } else {
-            this.wait().then(() => this.start())
+            return this.wait().then(() => this.start())
           }
         })
       })
@@ -74,17 +74,18 @@ class GameLoop {
     }, 1000)
   }
 
-  scheduleTurnCountdown (timeToStartTurn, callback) {
-    setTimeout(() => {
-      this.emit('turn-starts-in', { time_to_start_turn: timeToStartTurn })
-      if (timeToStartTurn > 0) this.scheduleTurnCountdown(timeToStartTurn - 1, callback)
-      else callback()
-    }, 1000)
+  scheduleTurnCountdown (timeToStartTurn) {
+    return new Promise((resolve, reject) => {
+      this.wait(1000).then(() => {
+        this.emit('turn-starts-in', { time_to_start_turn: timeToStartTurn })
+        return timeToStartTurn > 0 && this.scheduleTurnCountdown(timeToStartTurn - 1)
+      }).then(resolve, reject)
+    })
   }
 
-  wait () {
+  wait (waitDuration) {
     return new Promise((resolve, reject) => {
-      setTimeout(resolve, this.waitDuration)
+      setTimeout(resolve, waitDuration || this.waitDuration)
     })
   }
 
