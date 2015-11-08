@@ -38,7 +38,7 @@ export class Match {
     if (++this.turn >= this.max_turns) this.status = FINISHED
   }
 
-  checkEndGame() {
+  checkEndGame () {
     var players_alive = this.players.filter(player => player.alive)
     if (players_alive.length() <= 1) this.status = FINISHED
     if (players_alive.length() === 1) this.winner = players_alive.pop()
@@ -116,7 +116,7 @@ export class Match {
   applyCommand (command) {
     try {
       this.logInteraction()
-      var player = this.players.find(function (player) { return player.id === command.player_id })
+      var player = this.players.find(p => p.id === command.player_id)
       if (player.alive) {
         require(`../commands/${command.action}`)(this, player)
         player.transient.action = player.alive ? command.action : 'die'
