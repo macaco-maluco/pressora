@@ -10,8 +10,9 @@ export class Match {
     this.players = []
     this.players_ready = {}
     this.created_at = Date.now()
-    this.join_until = new Date(this.created_at + (30 * 1000)) // 1min
+    this.join_until = new Date(this.created_at + (30 * 1000)) // 1m
     this.latest_interaction = Date.now()
+    this.maxIdleTime = 10 * 60 * 1000 // 10m
     this.status = 'waiting'
     this.turn_command_buffer = {}
   }
@@ -28,6 +29,10 @@ export class Match {
 
   isFinished () {
     return false
+  }
+
+  isExpired () {
+    return Date.now() - this.latest_interaction > this.maxIdleTime
   }
 
   addPlayer (player) {

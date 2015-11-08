@@ -7,7 +7,7 @@ module.exports = function readMatchQueue (req, res) {
         id: match.id,
         status: match.status,
         turn: match.turn,
-        latest_interaction: match.latest_interaction,
+        expired: match.isExpired(),
         players: match.players
       }
     })
