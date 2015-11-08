@@ -15,7 +15,7 @@ class GameLoop {
     this.socket = socket
     this.match = match
     this.waitDuration = 6000
-    this.turnDuration = 30
+    this.turnDuration = 25
     this.turnCountdownDuration = 3
   }
 
