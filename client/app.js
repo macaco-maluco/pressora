@@ -15,7 +15,8 @@ export default React.createClass({
     editActionSlot: React.PropTypes.func,
     selectAction: React.PropTypes.func,
     movePlayer: React.PropTypes.func,
-    gameState: React.PropTypes.string
+    gameState: React.PropTypes.string,
+    timeToWait: React.PropTypes.number
   },
 
   componentDidMount: function () {

@@ -45,7 +45,7 @@ axios.get('/game')
     socket.on('turn-starts-in', function (data) {
       console.log('turn-starts-in', data)
       store.dispatch({ type: 'SET_GAME_STATE', gameState: 'turn-starts-in' })
-      store.dispatch({ type: 'WAIT_FOR', timeToWait: data.time_to_start_turn})
+      store.dispatch({ type: 'WAIT_FOR', timeToWait: data.time_to_start_turn })
     })
     socket.on('error', function () {
       console.error(arguments)
