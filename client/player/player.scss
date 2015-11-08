@@ -78,6 +78,10 @@
   &.player-dying {
     animation: dying ease-in-out 1s;
   }
+
+  &.player-damaged {
+    animation: damage ease-in-out .6s;
+  }
   
   .flames {
     width: 30px;
@@ -326,5 +330,19 @@
     transform-origin: center;
     transform: rotate3d(0, 0, 1, 360deg);
     opacity: 0;
+  }
+}
+
+@keyframes damage {
+  from, to {
+    transform: rotate3d(0, 0, 1, 0) translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-5px, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(5px, 0, 0) rotate3d(0, 0, 1, 5deg);
   }
 }
