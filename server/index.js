@@ -1,5 +1,3 @@
-import staticAssets from './static-assets'
-
 var express = require('express')
 var http = require('http')
 var app = express()
@@ -18,7 +16,7 @@ var io = new SocketIO(server, { path: '/game-socket' })
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./dist'))
 } else {
-  staticAssets(app)
+  require('./static-assets').middleware(app)
 }
 
 app.use(session)
