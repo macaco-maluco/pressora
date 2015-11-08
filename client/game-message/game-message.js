@@ -13,14 +13,24 @@ export default React.createClass({
     var message = this.getMessage()
     var visible = message ? 'visible' : 'invisible'
     var winner = this.isWinner() ? 'winner' : ''
+    var isFinished = !!this.props.winnerId
 
     return (
       <div className={`game-message ${visible}`}>
         <div className={`message ${this.props.gameState}`}>
           <span className={`${this.props.gameState} ${winner}`}>{message}</span>
+          {
+            isFinished && (
+              <p><button className='restart-game' onClick={this.handleRestart}>Start another game</button></p>
+            )
+          }
         </div>
       </div>
     )
+  },
+
+  handleRestart: function () {
+    window.location = '/game.html'
   },
 
   isWinner: function () {
