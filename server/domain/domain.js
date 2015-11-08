@@ -16,7 +16,7 @@ export class Match {
     this.players = []
     this.players_ready = {}
     this.created_at = Date.now()
-    this.join_until = new Date(this.created_at + (60 * 1000)) // 1m
+    this.join_until = new Date(this.created_at + (30 * 1000)) // 30s
     this.latest_interaction = Date.now()
     this.maxIdleTime = 10 * 60 * 1000 // 10m
     this.status = WAITING
