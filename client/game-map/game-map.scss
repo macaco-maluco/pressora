@@ -12,7 +12,7 @@
   }
 
   td {
-    border: 3px dashed rgba(176, 152, 98, 0.1);
+    border: 3px solid rgba(64, 64, 64, 0.53);
     padding: 0;
 
     background-size: contain;
@@ -25,6 +25,86 @@
 
     &.cell-2 {
       background-image: url('./terrain-types/map-cell-2.png');
+    }
+
+    &.cell-3 {
+      background-image: url('./terrain-types/map-cell-3.png');
+    }
+
+    &.cell-4 {
+      background-image: url('./terrain-types/map-cell-4.png');
+    }
+
+    &.cell-5 {
+      background-image: url('./terrain-types/map-cell-5.png');
+    }
+
+    &.cell-6 {
+      background-image: url('./terrain-types/map-cell-6.png');
+    }
+
+    &.cell-101 {
+      background-image: url('./terrain-types/planet-1-01.png');
+    }
+
+    &.cell-102 {
+      background-image: url('./terrain-types/planet-1-02.png');
+    }
+
+    &.cell-103 {
+      background-image: url('./terrain-types/planet-1-03.png');
+    }
+
+    &.cell-104 {
+      background-image: url('./terrain-types/planet-1-04.png');
+    }
+
+    &.cell-105 {
+      background-image: url('./terrain-types/planet-1-05.png');
+    }
+
+    &.cell-106 {
+      background-image: url('./terrain-types/planet-1-06.png');
+    }
+
+    &.cell-107 {
+      background-image: url('./terrain-types/planet-1-07.png');
+    }
+
+    &.cell-108 {
+      background-image: url('./terrain-types/planet-1-08.png');
+    }
+
+    &.cell-109 {
+      background-image: url('./terrain-types/planet-1-09.png');
+    }
+
+    &.cell-110 {
+      background-image: url('./terrain-types/planet-1-10.png');
+    }
+
+    &.cell-111 {
+      background-image: url('./terrain-types/planet-1-11.png');
+    }
+
+    &.cell-112 {
+      background-image: url('./terrain-types/planet-1-12.png');
+    }
+
+    &.cell-113 {
+      background-image: url('./terrain-types/planet-1-13.png');
+    }
+
+    &.cell-114 {
+      background-image: url('./terrain-types/planet-1-14.png');
+    }
+
+    &.cell-115 {
+      background-image: url('./terrain-types/planet-1-15.png');
+    }
+
+    &.cell-116 {
+      background-image: url('./terrain-types/planet-1-16.png');
     }
   }
 }
