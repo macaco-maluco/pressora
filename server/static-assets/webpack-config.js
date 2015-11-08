@@ -9,8 +9,20 @@ const watch = process.env.NODE_ENV !== 'production'
 
 
 const plugins = [
-  new HtmlWebpackPlugin({ template: 'client/landing-page.html', filename: 'index.html', chunks: ['common', 'index'], inject: true }),
-  new HtmlWebpackPlugin({ template: 'client/game.html', filename: 'game.html', chunks: ['common', 'game'], inject: true }),
+  new HtmlWebpackPlugin({
+    template: 'client/landing-page.html',
+    filename: 'index.html',
+    chunks: ['common', 'index'],
+    favicon: 'client/favicon.png',
+    inject: true
+  }),
+  new HtmlWebpackPlugin({
+    template: 'client/game.html',
+    filename: 'game.html',
+    chunks: ['common', 'game'],
+    favicon: 'client/favicon.png',
+    inject: true
+  }),
   new DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV)
