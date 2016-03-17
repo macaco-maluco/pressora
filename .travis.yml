@@ -7,7 +7,9 @@ services:
 
 before_install:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t macacomaluco/pressora:latest .
 
 script:
-  - docker push macacomaluco/pressora:latest
+  - docker build -t macacomaluco/pressora:latest .
+
+after_success:
+  - test $TRAVIS_BRANCH == "master" && docker push macacomaluco/pressora:latest
