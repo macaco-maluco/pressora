@@ -5,14 +5,12 @@ export function editActionSlot (action, slot) {
   }
 }
 
-
 export function selectAction (action) {
   return {
     type: 'SELECT_ACTION',
     action
   }
 }
-
 
 export function movePlayer (playerId, newPosition) {
   return {

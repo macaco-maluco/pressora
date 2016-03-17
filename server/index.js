@@ -12,7 +12,6 @@ var sharedsession = require('express-socket.io-session')
 var SocketIO = require('socket.io')
 var io = new SocketIO(server, { path: '/game-socket' })
 
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./dist'))
 } else {

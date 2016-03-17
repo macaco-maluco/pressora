@@ -12,7 +12,6 @@ export default React.createClass({
   }
 })
 
-
 function renderIndicators (life) {
   const indicators = []
 
