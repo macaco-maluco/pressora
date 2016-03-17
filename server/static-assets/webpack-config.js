@@ -7,7 +7,6 @@ import { join } from 'path'
 const projectPath = join(__dirname, '../../')
 const watch = process.env.NODE_ENV !== 'production'
 
-
 const plugins = [
   new HtmlWebpackPlugin({
     template: 'client/landing-page.html',
@@ -37,7 +36,6 @@ if (watch) {
   plugins.push(new optimize.UglifyJsPlugin())
 }
 
-
 const entry = {
   index: ['./landing-page'],
   game: ['./game']
@@ -45,7 +43,6 @@ const entry = {
 if (watch) {
   Object.keys(entry).forEach(e => entry[e].push('webpack-hot-middleware/client'))
 }
-
 
 export default {
   context: projectPath + '/client',
